@@ -55,12 +55,11 @@ public class ContentDaoImpl implements DaoService<Content> {
     public int updateData(Content object) throws SQLException, ClassNotFoundException {
         int result = 0;
         Connection connection = MySQLConnection.createConnection();
-        String query = "UPDATE Content SET content_title = ?, content_field = ?, timestamp = ? WHERE content_id = ?";
+        String query = "UPDATE Content SET content_title = ?, content_field = ? WHERE content_id = ?";
         PreparedStatement ps = connection.prepareStatement(query);
         ps.setString(1,object.getContent_title());
         ps.setString(2,object.getContent_field());
-        ps.setString(3,object.getTimestamp());
-        ps.setInt(4,object.getContent_id());
+        ps.setInt(3,object.getContent_id());
         if (ps.executeUpdate() != 0){
             connection.commit();
             result = 1;
