@@ -13,8 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="694.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.note_app.controller.HelloController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="694.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.note_app.controller.MainController">
    <children>
       <VBox prefHeight="481.0" prefWidth="693.0">
          <children>
@@ -25,22 +24,22 @@
                         <Font name="Bookshelf Symbol 7" size="17.0" />
                      </font>
                   </Label>
-                  <Label fx:id="labelStatus" contentDisplay="CENTER" prefHeight="57.0" prefWidth="278.0" text="Note Saved !!!">
+                  <Label fx:id="labelStatus" contentDisplay="CENTER" prefHeight="57.0" prefWidth="278.0">
                      <font>
                         <Font name="Bookshelf Symbol 7" size="12.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnCreate" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" text="Create" HBox.hgrow="ALWAYS">
+                  <Button fx:id="btnSave" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onActionSaveContent" prefHeight="26.0" prefWidth="41.0" text="Save" textAlignment="CENTER" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets right="5.0" top="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="btnSave" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" text="Save" HBox.hgrow="ALWAYS">
+                  <Button fx:id="btnUpdate" alignment="CENTER_RIGHT" contentDisplay="RIGHT" disable="true" mnemonicParsing="false" onAction="#onActionEditContent" text="Edit" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets right="5.0" top="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="btnDelete" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" text="Delete" HBox.hgrow="ALWAYS">
+                  <Button fx:id="btnDelete" alignment="CENTER_RIGHT" contentDisplay="RIGHT" disable="true" mnemonicParsing="false" onAction="#onActionDeleteContent" text="Delete" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets right="5.0" top="15.0" />
                      </HBox.margin>
@@ -68,7 +67,7 @@
                                     <Font name="System Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <ListView fx:id="list1" prefHeight="313.0" prefWidth="177.0" VBox.vgrow="ALWAYS" />
+                              <ListView fx:id="list1" onMouseClicked="#contentClicked" prefHeight="313.0" prefWidth="177.0" VBox.vgrow="ALWAYS" />
                            </children>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -95,7 +94,7 @@
                               </HBox>
                               <HBox prefHeight="26.0" prefWidth="461.0">
                                  <children>
-                                    <Label fx:id="labelKeterangan" prefHeight="17.0" prefWidth="471.0" text="Created in : Nov 21, 2022 At : 09:32:43 PM Updated in : Nov 22, 2022 At : 10:43:21 PM" textAlignment="CENTER">
+                                    <Label fx:id="labelKeterangan" prefHeight="17.0" prefWidth="471.0" textAlignment="CENTER">
                                        <HBox.margin>
                                           <Insets top="3.0" />
                                        </HBox.margin>

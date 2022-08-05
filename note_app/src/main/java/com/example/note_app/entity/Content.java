@@ -49,4 +49,8 @@ public class Content {
         this.timestamp = timestamp;
     }
 
+    @Override
+    public String toString() {
+        return content_title;
+    }
 }

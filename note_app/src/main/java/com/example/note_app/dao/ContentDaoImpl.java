@@ -16,11 +16,10 @@ public class ContentDaoImpl implements DaoService<Content> {
     public int addData(Content object) throws SQLException, ClassNotFoundException {
         int result = 0;
         Connection connection = MySQLConnection.createConnection();
-        String query = "INSERT INTO Content(content_title,content_field,timestamp) VALUES(?, ?, ?)";
+        String query = "INSERT INTO Content(content_title,content_field) VALUES(?, ?)";
         PreparedStatement ps = connection.prepareStatement(query);
         ps.setString(1,object.getContent_title());
         ps.setString(2,object.getContent_field());
-        ps.setString(3,object.getTimestamp());
         if (ps.executeUpdate() != 0){
             connection.commit();
             result = 1;
