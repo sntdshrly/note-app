@@ -1,6 +1,8 @@
 package com.example.note_app.controller;
 
+import com.example.note_app.dao.CategoryDaoImpl;
 import com.example.note_app.dao.ContentDaoImpl;
+import com.example.note_app.entity.Category;
 import com.example.note_app.entity.Content;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,6 +17,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
+    @FXML
     private ListView list2;
     @FXML
     private Label labelStatus;
@@ -38,6 +41,7 @@ public class MainController implements Initializable {
     private TextArea txtArea;
 
     private ObservableList<Content> contents;
+    private ObservableList<Category> categories;
     private Content selectedContent;
 
     @FXML
@@ -92,7 +96,7 @@ public class MainController implements Initializable {
     public void contentClicked(MouseEvent mouseEvent) {
         selectedContent = (Content) list1.getSelectionModel().getSelectedItem();
         if (selectedContent != null) {
-            labelKeterangan.setText("Created in : "+selectedContent.getTimestamp()+" Updated in : "+selectedContent.getTimestamp_update());
+            labelKeterangan.setText("Created in : "+selectedContent.getTimestamp()+"\t Updated in : "+selectedContent.getTimestamp_update());
             txtTitle.setText(selectedContent.getContent_title());
             txtArea.setText(selectedContent.getContent_field());
             btnSave.setDisable(true);
@@ -125,12 +129,16 @@ public class MainController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ContentDaoImpl contentDao = new ContentDaoImpl();
         contents = FXCollections.observableArrayList();
+        CategoryDaoImpl categoryDao = new CategoryDaoImpl();
+        categories = FXCollections.observableArrayList();
         try {
             contents.addAll(contentDao.fetchAll());
+            categories.addAll(categoryDao.fetchAll());
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
         list1.setItems(contents);
+        list2.setItems(categories);
     }
 
 }
