@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
+    private ListView list2;
     @FXML
     private Label labelStatus;
     @FXML
