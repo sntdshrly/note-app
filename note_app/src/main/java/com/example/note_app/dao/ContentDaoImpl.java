@@ -88,6 +88,7 @@ public class ContentDaoImpl implements DaoService<Content> {
             content.setContent_title(rs.getString("content_title"));
             content.setContent_field(rs.getString("content_field"));
             content.setTimestamp(rs.getString("timestamp"));
+            content.setTimestamp_update(rs.getString("timestamp_update"));
             contents.add(content);
         }
         rs.close();

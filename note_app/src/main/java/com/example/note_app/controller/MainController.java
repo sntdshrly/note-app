@@ -91,7 +91,7 @@ public class MainController implements Initializable {
     public void contentClicked(MouseEvent mouseEvent) {
         selectedContent = (Content) list1.getSelectionModel().getSelectedItem();
         if (selectedContent != null) {
-            labelKeterangan.setText("Created in : "+selectedContent.getTimestamp());
+            labelKeterangan.setText("Created in : "+selectedContent.getTimestamp()+" Updated in : "+selectedContent.getTimestamp_update());
             txtTitle.setText(selectedContent.getContent_title());
             txtArea.setText(selectedContent.getContent_field());
             btnSave.setDisable(true);
