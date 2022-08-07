@@ -3,6 +3,8 @@ package com.example.note_app.dao;
 import com.example.note_app.entity.Content;
 import com.example.note_app.util.DaoService;
 import com.example.note_app.util.MySQLConnection;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -55,11 +57,12 @@ public class ContentDaoImpl implements DaoService<Content> {
     public int updateData(Content object) throws SQLException, ClassNotFoundException {
         int result = 0;
         Connection connection = MySQLConnection.createConnection();
-        String query = "UPDATE Content SET content_title = ?, content_field = ? WHERE content_id = ?";
+        String query = "UPDATE Content SET content_title = ?, content_field = ?, timestamp = ?, timestamp_update = DEFAULT WHERE content_id = ?";
         PreparedStatement ps = connection.prepareStatement(query);
         ps.setString(1,object.getContent_title());
         ps.setString(2,object.getContent_field());
-        ps.setInt(3,object.getContent_id());
+        ps.setString(3,object.getTimestamp());
+        ps.setInt(4,object.getContent_id());
         if (ps.executeUpdate() != 0){
             connection.commit();
             result = 1;
@@ -73,8 +76,8 @@ public class ContentDaoImpl implements DaoService<Content> {
     }
 
     @Override
-    public List<Content> fetchAll() throws SQLException, ClassNotFoundException {
-        List<Content> contents = new ArrayList<>();
+    public ObservableList<Content> fetchAll() throws SQLException, ClassNotFoundException {
+        ObservableList<Content> contents = FXCollections.observableArrayList();
         Connection connection = MySQLConnection.createConnection();
         String query = "SELECT * FROM Content";
         PreparedStatement ps = connection.prepareStatement(query);

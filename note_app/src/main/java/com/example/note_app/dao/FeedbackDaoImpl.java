@@ -72,7 +72,7 @@ public class FeedbackDaoImpl implements DaoService<Feedback> {
     }
 
     @Override
-    public List<Feedback> fetchAll() throws SQLException, ClassNotFoundException {
+    public ObservableList<Feedback> fetchAll() throws SQLException, ClassNotFoundException {
         ObservableList<Feedback> feedbacks = FXCollections.observableArrayList();
 
         String query = "SELECT feedback.feedback_id, feedback.feedback_field, feedback.content_id, feedback.user_id \n" +

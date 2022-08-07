@@ -71,7 +71,7 @@ public class UserDaoImpl implements DaoService<User> {
     }
 
     @Override
-    public List<User> fetchAll() throws SQLException, ClassNotFoundException {
+    public ObservableList<User> fetchAll() throws SQLException, ClassNotFoundException {
         ObservableList<User> users = FXCollections.observableArrayList();
 
         String query = "SELECT * FROM user";

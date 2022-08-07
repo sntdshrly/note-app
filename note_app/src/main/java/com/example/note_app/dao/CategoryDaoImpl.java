@@ -15,7 +15,7 @@ import java.util.List;
 public class CategoryDaoImpl implements DaoService<Category> {
 
     @Override
-    public int addData(Category object) throws SQLException, ClassNotFoundException {
+    public int addData(Category object) {
         String query = "INSERT INTO category VALUES(DEFAULT, ?, ?)";
         int result = 0;
         PreparedStatement preparedStatement;
@@ -26,14 +26,14 @@ public class CategoryDaoImpl implements DaoService<Category> {
             preparedStatement.setInt(1, object.getCategory_id());
             preparedStatement.setString(2, object.getCategory_name());
             result = preparedStatement.executeUpdate();
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return result;
     }
 
     @Override
-    public int deleteData(Category object) throws SQLException, ClassNotFoundException {
+    public int deleteData(Category object) {
         String query = "delete from category where id = ?";
         PreparedStatement preparedStatement;
         int result = 0;
@@ -43,14 +43,14 @@ public class CategoryDaoImpl implements DaoService<Category> {
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, object.getCategory_id());
             result = preparedStatement.executeUpdate();
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return result;
     }
 
     @Override
-    public int updateData(Category object) throws SQLException, ClassNotFoundException {
+    public int updateData(Category object) {
         String query = "UPDATE category " +
                 "SET category_name = ? , category_description = ? " +
                 "WHERE id = ?";
@@ -64,14 +64,14 @@ public class CategoryDaoImpl implements DaoService<Category> {
             preparedStatement.setString(2, object.getCategory_description());
             preparedStatement.setInt(3, object.getCategory_id());
             result = preparedStatement.executeUpdate();
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return result;
     }
 
     @Override
-    public List<Category> fetchAll() throws SQLException, ClassNotFoundException {
+    public ObservableList<Category> fetchAll() {
         ObservableList<Category> categories = FXCollections.observableArrayList();
 
         String query = "SELECT * FROM category";
@@ -90,7 +90,7 @@ public class CategoryDaoImpl implements DaoService<Category> {
                         )
                 );
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
 
