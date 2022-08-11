@@ -73,7 +73,7 @@ public class MainController implements Initializable {
         // Content
         contentDao = new ContentDaoImpl();
         contents = FXCollections.observableArrayList();
-        contents.addAll(contentDao.fetchAll());
+        contents.addAll(contentDao.filterData(listCategory.getSelectionModel().getSelectedItem()));
         listContent.setItems(contents);
 
         // Category
