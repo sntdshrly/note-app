@@ -3,6 +3,9 @@ module com.example.note_app {
     requires javafx.fxml;
     requires java.sql;
     requires jasperreports;
+    requires java.persistence;
+    requires org.hibernate.orm.core;
+    requires java.naming;
 
 
     opens com.example.note_app to javafx.fxml;
@@ -12,7 +15,7 @@ module com.example.note_app {
     exports com.example.note_app.dao;
     opens com.example.note_app.dao to javafx.fxml;
     exports com.example.note_app.entity;
-    opens com.example.note_app.entity to javafx.fxml;
+    opens com.example.note_app.entity;
     exports com.example.note_app.util;
     opens com.example.note_app.util to javafx.fxml;
 }

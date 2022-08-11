@@ -1,24 +1,42 @@
 package com.example.note_app.entity;
 
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
+@Entity
+@Table(name = "User")
 public class User {
-    private Integer user_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "user_id")
+    private Integer userId;
+    @Basic
+    @Column(name = "username")
     private String username;
+    @Basic
+    @Column(name = "email")
     private String email;
+    @Basic
+    @Column(name = "password")
     private String password;
 
-    public User(Integer user_id, String username, String email, String password) {
-        this.user_id = user_id;
-        this.username = username;
-        this.email = email;
-        this.password = password;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "Collaborator",
+    joinColumns = @JoinColumn(name = "user_id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "content_id", nullable = false),
+            foreignKey = @ForeignKey(name = "user_content"),
+            inverseForeignKey = @ForeignKey(name = "content_user")
+    )
+    private Set<Content> contents = new HashSet<>();
+
+    public Integer getUserId() {
+        return userId;
     }
 
-    public Integer getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {
@@ -43,5 +61,18 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(userId, user.userId) && Objects.equals(username, user.username) && Objects.equals(email, user.email) && Objects.equals(password, user.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId, username, email, password);
     }
 }

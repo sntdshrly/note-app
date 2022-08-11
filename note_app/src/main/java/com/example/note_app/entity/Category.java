@@ -1,47 +1,60 @@
 package com.example.note_app.entity;
 
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
+@Entity
 public class Category {
-    private Integer category_id;
-    private String category_name;
-    private String category_description;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "category_id")
+    private Integer categoryId;
+    @Basic
+    @Column(name = "category_name")
+    private String categoryName;
+    @Basic
+    @Column(name = "category_description")
+    private String categoryDescription;
 
-    public Category(Integer category_id, String category_name, String category_description) {
-        this.category_id = category_id;
-        this.category_name = category_name;
-        this.category_description = category_description;
+    @ManyToMany(mappedBy = "categories")
+    private Set<Content> contents = new HashSet<>();
+
+    public Integer getCategoryId() {
+        return categoryId;
     }
 
-    public Category(String category_name, String category_description) {
-        this.category_name = category_name;
-        this.category_description = category_description;
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public Integer getCategory_id() {
-        return category_id;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setCategory_id(Integer category_id) {
-        this.category_id = category_id;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
-    public String getCategory_name() {
-        return category_name;
+    public String getCategoryDescription() {
+        return categoryDescription;
     }
 
-    public void setCategory_name(String category_name) {
-        this.category_name = category_name;
-    }
-
-    public String getCategory_description() {
-        return category_description;
-    }
-
-    public void setCategory_description(String category_description) {
-        this.category_description = category_description;
+    public void setCategoryDescription(String categoryDescription) {
+        this.categoryDescription = categoryDescription;
     }
 
     @Override
-    public String toString() {
-        return category_name;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Category category = (Category) o;
+        return Objects.equals(categoryId, category.categoryId) && Objects.equals(categoryName, category.categoryName) && Objects.equals(categoryDescription, category.categoryDescription);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(categoryId, categoryName, categoryDescription);
     }
 }

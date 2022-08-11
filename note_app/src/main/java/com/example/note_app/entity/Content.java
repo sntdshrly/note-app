@@ -1,66 +1,106 @@
 package com.example.note_app.entity;
 
+import javax.persistence.*;
+import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+
+@Entity
 public class Content {
-    private Integer content_id;
-    private String content_title;
-    private String content_field;
-    private String timestamp;
-    private String timestamp_update;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "content_id")
+    private Integer contentId;
+    @Basic
+    @Column(name = "content_title")
+    private String contentTitle;
+    @Basic
+    @Column(name = "content_field")
+    private String contentField;
+    @Basic
+    @Column(name = "created_at")
+    private Timestamp createdAt;
+    @Basic
+    @Column(name = "updated_at")
+    private Timestamp updatedAt;
+    @OneToMany(mappedBy = "content")
+    private List<Feedback> feedbacks;
 
-    public Content(Integer content_id, String content_title, String content_field, String timestamp, String timestamp_update) {
-        this.content_id = content_id;
-        this.content_title = content_title;
-        this.content_field = content_field;
-        this.timestamp = timestamp;
-        this.timestamp_update = timestamp_update;
+    @ManyToMany(mappedBy = "contents", cascade = CascadeType.ALL)
+    private Set<User> users = new HashSet<>();
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "ContentCategory",
+            joinColumns = @JoinColumn(name = "content_id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "category_id", nullable = false)
+    )
+    private Set<Category> categories = new HashSet<>();
+
+    public Integer getContentId() {
+        return contentId;
     }
 
-    public Content() {
-
+    public void setContentId(Integer contentId) {
+        this.contentId = contentId;
     }
 
-    public Integer getContent_id() {
-        return content_id;
+    public String getContentTitle() {
+        return contentTitle;
     }
 
-    public void setContent_id(Integer content_id) {
-        this.content_id = content_id;
+    public void setContentTitle(String contentTitle) {
+        this.contentTitle = contentTitle;
     }
 
-    public String getContent_title() {
-        return content_title;
+    public String getContentField() {
+        return contentField;
     }
 
-    public void setContent_title(String content_title) {
-        this.content_title = content_title;
+    public void setContentField(String contentField) {
+        this.contentField = contentField;
     }
 
-    public String getContent_field() {
-        return content_field;
+    public Timestamp getCreatedAt() {
+        return createdAt;
     }
 
-    public void setContent_field(String content_field) {
-        this.content_field = content_field;
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public String getTimestamp() {
-        return timestamp;
+    public Timestamp getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
+    public void setUpdatedAt(Timestamp updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
-    public String getTimestamp_update() {
-        return timestamp_update;
-    }
-
-    public void setTimestamp_update(String timestamp_update) {
-        this.timestamp_update = timestamp_update;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Content content = (Content) o;
+        return Objects.equals(contentId, content.contentId) && Objects.equals(contentTitle, content.contentTitle) && Objects.equals(contentField, content.contentField) && Objects.equals(createdAt, content.createdAt) && Objects.equals(updatedAt, content.updatedAt);
     }
 
     @Override
     public String toString() {
-        return content_title;
+        return contentTitle;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(contentId, contentTitle, contentField, createdAt, updatedAt);
+    }
+
+    public List<Feedback> getFeedbacks() {
+        return feedbacks;
+    }
+
+    public void setFeedbacks(List<Feedback> feedbacks) {
+        this.feedbacks = feedbacks;
     }
 }

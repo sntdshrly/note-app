@@ -1,48 +1,66 @@
 package com.example.note_app.entity;
 
+import javax.persistence.*;
+import java.util.Objects;
+
+@Entity
 public class Feedback {
-    private Integer feedback_id;
-    private String feedback_field;
-    private Integer user_id;
-    private Integer content_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "feedback_id")
+    private Integer feedbackId;
+    @Basic
+    @Column(name = "feedback_field")
+    private String feedbackField;
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
+    private User user;
+    @ManyToOne
+    @JoinColumn(name = "content_id", referencedColumnName = "content_id", nullable = false)
+    private Content content;
 
-    public Feedback(Integer feedback_id, String feedback_field, Integer user_id, Integer content_id) {
-        this.feedback_id = feedback_id;
-        this.feedback_field = feedback_field;
-        this.user_id = user_id;
-        this.content_id = content_id;
+    public Integer getFeedbackId() {
+        return feedbackId;
     }
 
-
-    public Integer getFeedback_id() {
-        return feedback_id;
+    public void setFeedbackId(Integer feedbackId) {
+        this.feedbackId = feedbackId;
     }
 
-    public void setFeedback_id(Integer feedback_id) {
-        this.feedback_id = feedback_id;
+    public String getFeedbackField() {
+        return feedbackField;
     }
 
-    public String getFeedback_field() {
-        return feedback_field;
+    public void setFeedbackField(String feedbackField) {
+        this.feedbackField = feedbackField;
     }
 
-    public void setFeedback_field(String feedback_field) {
-        this.feedback_field = feedback_field;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Feedback feedback = (Feedback) o;
+        return Objects.equals(feedbackId, feedback.feedbackId) && Objects.equals(feedbackField, feedback.feedbackField);
     }
 
-    public Integer getUser_id() {
-        return user_id;
+    @Override
+    public int hashCode() {
+        return Objects.hash(feedbackId, feedbackField);
     }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+    public User getUser() {
+        return user;
     }
 
-    public Integer getContent_id() {
-        return content_id;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public void setContent_id(Integer content_id) {
-        this.content_id = content_id;
+    public Content getContent() {
+        return content;
+    }
+
+    public void setContent(Content content) {
+        this.content = content;
     }
 }
