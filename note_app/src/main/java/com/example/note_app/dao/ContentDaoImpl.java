@@ -1,99 +1,92 @@
 package com.example.note_app.dao;
 
+import com.example.note_app.entity.Category;
 import com.example.note_app.entity.Content;
 import com.example.note_app.util.DaoService;
+import com.example.note_app.util.HibernateUtility;
 import com.example.note_app.util.MySQLConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ContentDaoImpl implements DaoService<Content> {
     @Override
-    public int addData(Content object) throws SQLException, ClassNotFoundException {
-        int result = 0;
-        Connection connection = MySQLConnection.createConnection();
-        String query = "INSERT INTO Content(content_title,content_field) VALUES(?, ?)";
-        PreparedStatement ps = connection.prepareStatement(query);
-        ps.setString(1,object.getContent_title());
-        ps.setString(2,object.getContent_field());
-        if (ps.executeUpdate() != 0){
-            connection.commit();
+    public int addData(Content object) {
+        int result;
+        Session session = HibernateUtility.getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+            session.save(object);
+            transaction.commit();
             result = 1;
+        } catch (Exception e) {
+            transaction.rollback();
+            result = -1;
         }
-        else {
-            connection.rollback();
-        }
-        ps.close();
-        connection.close();
+
+        session.close();
         return result;
     }
 
     @Override
-    public int deleteData(Content object) throws SQLException, ClassNotFoundException {
-        int result = 0;
-        Connection connection = MySQLConnection.createConnection();
-        String query = "DELETE FROM Content WHERE content_id = ?";
-        PreparedStatement ps = connection.prepareStatement(query);
-        ps.setInt(1,object.getContent_id());
-        if (ps.executeUpdate() != 0){
-            connection.commit();
+    public int deleteData(Content object) {
+        int result;
+        Session session = HibernateUtility.getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+            session.delete(object);
+            transaction.commit();
             result = 1;
+        } catch (Exception e) {
+            transaction.rollback();
+            result = -1;
         }
-        else {
-            connection.rollback();
-        }
-        ps.close();
-        connection.close();
+
+        session.close();
         return result;
     }
 
     @Override
-    public int updateData(Content object) throws SQLException, ClassNotFoundException {
-        int result = 0;
-        Connection connection = MySQLConnection.createConnection();
-        String query = "UPDATE Content SET content_title = ?, content_field = ?, timestamp = ?, timestamp_update = DEFAULT WHERE content_id = ?";
-        PreparedStatement ps = connection.prepareStatement(query);
-        ps.setString(1,object.getContent_title());
-        ps.setString(2,object.getContent_field());
-        ps.setString(3,object.getTimestamp());
-        ps.setInt(4,object.getContent_id());
-        if (ps.executeUpdate() != 0){
-            connection.commit();
+    public int updateData(Content object) {
+        int result;
+        Session session = HibernateUtility.getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+            session.update(object);
+            transaction.commit();
             result = 1;
+        } catch (Exception e) {
+            transaction.rollback();
+            result = -1;
         }
-        else {
-            connection.rollback();
-        }
-        ps.close();
-        connection.close();
+
+        session.close();
         return result;
     }
 
     @Override
-    public ObservableList<Content> fetchAll() throws SQLException, ClassNotFoundException {
+    public ObservableList<Content> fetchAll() {
         ObservableList<Content> contents = FXCollections.observableArrayList();
-        Connection connection = MySQLConnection.createConnection();
-        String query = "SELECT * FROM Content";
-        PreparedStatement ps = connection.prepareStatement(query);
-        ResultSet rs = ps.executeQuery();
-        while(rs.next()){
-            Content content = new Content();
-            content.setContent_id(rs.getInt("content_id"));
-            content.setContent_title(rs.getString("content_title"));
-            content.setContent_field(rs.getString("content_field"));
-            content.setTimestamp(rs.getString("timestamp"));
-            content.setTimestamp_update(rs.getString("timestamp_update"));
-            contents.add(content);
-        }
-        rs.close();
-        ps.close();
-        connection.close();
+        Session session = HibernateUtility.getSession();
+
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Content> query = builder.createQuery(Content.class);
+        query.from(Content.class);
+
+        contents.addAll(session.createQuery(query).getResultList());
+
+        session.close();
         return contents;
     }
 }
