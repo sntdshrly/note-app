@@ -9,19 +9,18 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.note_app.controller.MainController">
+<AnchorPane prefHeight="655.0" prefWidth="1078.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.note_app.controller.MainController">
    <children>
-      <VBox prefHeight="481.0" prefWidth="900.0">
+      <VBox prefHeight="481.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox prefHeight="100.0" prefWidth="897.0">
+            <HBox alignment="CENTER" prefHeight="80.0" prefWidth="1058.0">
                <children>
                   <Label prefHeight="53.0" prefWidth="277.0" text="SimpleNotes" textAlignment="CENTER">
                      <font>
-                        <Font name="Bookshelf Symbol 7" size="17.0" />
+                        <Font size="24.0" />
                      </font>
                   </Label>
                   <Label fx:id="labelStatus" contentDisplay="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="344.0">
@@ -29,7 +28,7 @@
                         <Font name="Bookshelf Symbol 7" size="12.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnSave" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onActionSaveContent" prefHeight="26.0" prefWidth="41.0" text="Save" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                  <Button fx:id="btnSave" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onActionSaveContent" prefHeight="26.0" prefWidth="48.0" text="Save" textAlignment="CENTER" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets right="5.0" top="15.0" />
                      </HBox.margin>
@@ -56,33 +55,39 @@
                   </Button>
                </children>
             </HBox>
-            <SplitPane dividerPositions="0.29797979797979796" maxWidth="-Infinity" prefHeight="455.0" prefWidth="880.0">
+            <SplitPane dividerPositions="0.4" maxWidth="-Infinity" prefHeight="555.0" prefWidth="1141.0" VBox.vgrow="ALWAYS">
               <items>
-                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="389.0" prefWidth="283.0">
+                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="553.0" prefWidth="720.0">
                      <children>
-                        <HBox prefHeight="400.0" prefWidth="200.0">
+                        <HBox prefHeight="400.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="128.0">
+                              <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="553.0" prefWidth="193.0" spacing="5.0">
                                  <children>
                                     <Label text="Category">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
                                     </Label>
-                                    <ListView fx:id="list2" maxWidth="-Infinity" minWidth="-Infinity" onMouseClicked="#contentClicked" prefHeight="369.0" prefWidth="124.0" VBox.vgrow="ALWAYS" />
+                                    <HBox prefHeight="7.0" prefWidth="600.0" spacing="5.0">
+                                       <children>
+                                          <TextField fx:id="txtCategory" prefHeight="25.0" prefWidth="118.0" />
+                                          <Button mnemonicParsing="false" onAction="#saveCategory" prefHeight="26.0" prefWidth="64.0" text="Save" />
+                                       </children>
+                                    </HBox>
+                                    <ListView fx:id="listCategory" editable="true" onEditCommit="#editCommit" prefHeight="500.0" prefWidth="162.0" VBox.vgrow="ALWAYS" />
                                  </children>
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
                               </VBox>
-                              <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="145.0">
+                              <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="553.0" prefWidth="227.0">
                                  <children>
-                                    <Label text="This is a Note!">
+                                    <Label text="Note">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
                                     </Label>
-                                    <ListView fx:id="list1" onMouseClicked="#contentClicked" prefHeight="370.0" prefWidth="130.0" VBox.vgrow="ALWAYS" />
+                                    <ListView fx:id="listContent" onMouseClicked="#contentClicked" prefHeight="370.0" prefWidth="130.0" VBox.vgrow="ALWAYS" />
                                  </children>
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -92,33 +97,25 @@
                         </HBox>
                      </children>
                   </AnchorPane>
-                <AnchorPane maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="407.0" prefWidth="596.0">
+                <AnchorPane maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="553.0" prefWidth="903.0">
                      <children>
-                        <VBox prefHeight="400.0" prefWidth="596.0">
+                        <VBox prefHeight="400.0" prefWidth="596.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                            <children>
-                              <HBox prefHeight="25.0" prefWidth="373.0">
+                              <HBox prefHeight="25.0" prefWidth="638.0">
                                  <children>
                                     <Label alignment="CENTER" text="Title :" textAlignment="CENTER" HBox.hgrow="ALWAYS" />
-                                    <TextField fx:id="txtTitle" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="546.0" HBox.hgrow="ALWAYS">
+                                    <TextField fx:id="txtTitle" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="585.0" HBox.hgrow="ALWAYS">
                                        <HBox.margin>
                                           <Insets left="5.0" />
                                        </HBox.margin>
                                     </TextField>
                                  </children>
                               </HBox>
-                              <HBox prefHeight="26.0" prefWidth="461.0">
-                                 <children>
-                                    <Label fx:id="labelKeterangan" prefHeight="17.0" prefWidth="471.0" textAlignment="CENTER">
-                                       <HBox.margin>
-                                          <Insets top="3.0" />
-                                       </HBox.margin>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                              <TextArea fx:id="txtArea" maxWidth="-Infinity" prefHeight="333.0" prefWidth="589.0" VBox.vgrow="ALWAYS">
+                              <Label fx:id="labelKeterangan" prefHeight="17.0" prefWidth="471.0" textAlignment="CENTER" />
+                              <TextArea fx:id="txtArea" maxWidth="-Infinity" prefHeight="496.0" prefWidth="803.0" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
@@ -135,4 +132,4 @@
          </padding>
       </VBox>
    </children>
-</Pane>
+</AnchorPane>
