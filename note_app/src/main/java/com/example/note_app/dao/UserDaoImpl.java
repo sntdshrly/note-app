@@ -12,6 +12,8 @@ import org.hibernate.Transaction;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,7 +21,7 @@ import java.sql.SQLException;
 
 public class UserDaoImpl implements DaoService<User> {
     @Override
-    public int addData(User object) throws SQLException, ClassNotFoundException {
+    public int addData(User object) {
         int result;
         Session session = HibernateUtility.getSession();
         Transaction transaction = session.beginTransaction();
@@ -38,7 +40,7 @@ public class UserDaoImpl implements DaoService<User> {
     }
 
     @Override
-    public int deleteData(User object) throws SQLException, ClassNotFoundException {
+    public int deleteData(User object) {
         int result;
         Session session = HibernateUtility.getSession();
         Transaction transaction = session.beginTransaction();
@@ -57,7 +59,7 @@ public class UserDaoImpl implements DaoService<User> {
     }
 
     @Override
-    public int updateData(User object) throws SQLException, ClassNotFoundException {
+    public int updateData(User object) {
         int result;
         Session session = HibernateUtility.getSession();
         Transaction transaction = session.beginTransaction();
@@ -76,7 +78,7 @@ public class UserDaoImpl implements DaoService<User> {
     }
 
     @Override
-    public ObservableList<User> fetchAll() throws SQLException, ClassNotFoundException {
+    public ObservableList<User> fetchAll() {
         Session session = HibernateUtility.getSession();
         ObservableList<User> users = FXCollections.observableArrayList();
 
@@ -88,5 +90,24 @@ public class UserDaoImpl implements DaoService<User> {
 
         session.close();
         return users;
+    }
+
+    public User fetchUser(String username, String password) {
+        Session session = HibernateUtility.getSession();
+        ObservableList<User> users = FXCollections.observableArrayList();
+
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<User> query = builder.createQuery(User.class);
+        Root<User> root = query.from(User.class);
+
+        Predicate usernameCheck = builder.equal(root.get("username"), username);
+        Predicate passwordCheck = builder.equal(root.get("password"), password);
+        Predicate predicate = builder.and(usernameCheck, passwordCheck);
+        query.where(predicate);
+
+        User loginUser = session.createQuery(query).getSingleResult();
+
+        session.close();
+        return loginUser;
     }
 }
