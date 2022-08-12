@@ -28,15 +28,23 @@ public class Content {
     @OneToMany(mappedBy = "content")
     private List<Feedback> feedbacks;
 
-    @ManyToMany(mappedBy = "contents", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "contents", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     private Set<User> users = new HashSet<>();
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinTable(name = "ContentCategory",
             joinColumns = @JoinColumn(name = "content_id", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "category_id", nullable = false)
     )
     private Set<Category> categories = new HashSet<>();
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
 
     public Integer getContentId() {
         return contentId;

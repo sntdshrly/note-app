@@ -22,13 +22,15 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinTable(name = "Collaborator",
     joinColumns = @JoinColumn(name = "user_id", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "content_id", nullable = false),
             foreignKey = @ForeignKey(name = "user_content"),
             inverseForeignKey = @ForeignKey(name = "content_user")
     )
+//    @EqualsAndHashCode.Exclude
+//    @FieldNameConstants.Exclude
     private Set<Content> contents = new HashSet<>();
 
     public Integer getUserId() {
@@ -61,6 +63,15 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<Content> getContents() {
+        return contents;
+    }
+
+    @Override
+    public String toString() {
+        return username;
     }
 
     @Override

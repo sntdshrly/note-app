@@ -18,7 +18,7 @@ public class Category {
     @Column(name = "category_description")
     private String categoryDescription;
 
-    @ManyToMany(mappedBy = "categories")
+    @ManyToMany(mappedBy = "categories", fetch=FetchType.EAGER)
     private Set<Content> contents = new HashSet<>();
 
     public Integer getCategoryId() {
