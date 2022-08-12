@@ -2,6 +2,7 @@ package com.example.note_app.dao;
 
 import com.example.note_app.entity.Category;
 import com.example.note_app.entity.Content;
+import com.example.note_app.entity.User;
 import com.example.note_app.util.DaoService;
 import com.example.note_app.util.HibernateUtility;
 import com.example.note_app.util.MySQLConnection;
@@ -10,10 +11,7 @@ import javafx.collections.ObservableList;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -101,6 +99,23 @@ public class ContentDaoImpl implements DaoService<Content> {
         Predicate predicateSelectedCategory = criteriaBuilder.equal(contentRoot.get("categories"), categorySelected);
         criteriaQuery.where(predicateSelectedCategory);
         List<Content> contents = session.createQuery(criteriaQuery).getResultList();
+        session.close();
+        return contents;
+    }
+
+    public ObservableList<Content> fetchByUser(User user) {
+        ObservableList<Content> contents = FXCollections.observableArrayList();
+        Session session = HibernateUtility.getSession();
+
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Content> query = builder.createQuery(Content.class);
+        Root<Content> root = query.from(Content.class);
+
+        Predicate predicate = builder.equal(root.get(""), user.getUserId());
+        query.where(predicate);
+
+        contents.addAll(session.createQuery(query).getResultList());
+
         session.close();
         return contents;
     }
