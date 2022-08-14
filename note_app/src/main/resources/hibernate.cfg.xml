@@ -7,11 +7,20 @@
     <property name="connection.url">jdbc:mysql://localhost:3306/noteappdb</property>
     <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
     <property name="connection.username">root</property>
-    <mapping class="com.example.note_app.entity.Category"/>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+    <property name="hibernate.current_session_context_class">thread</property>
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.format_sql">true</property>
+    <property name="hibernate.use_sql_comments">true</property>
+      <mapping class="com.example.note_app.entity.Category"/>
     <mapping class="com.example.note_app.entity.Content"/>
     <mapping class="com.example.note_app.entity.Feedback"/>
     <mapping class="com.example.note_app.entity.User"/>
-    <!-- <property name="connection.username"/> -->
+    <mapping class="com.example.note_app.entity.relationship.UserCategory"/>
+    <mapping class="com.example.note_app.entity.relationship.Collaborator"/>
+    <mapping class="com.example.note_app.entity.relationship.ContentCategory"/>
+      <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 
     <!-- DB schema will be updated if needed -->

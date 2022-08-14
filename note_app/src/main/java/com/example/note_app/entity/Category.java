@@ -21,6 +21,15 @@ public class Category {
     @ManyToMany(mappedBy = "categories", fetch=FetchType.EAGER)
     private Set<Content> contents = new HashSet<>();
 
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST}, fetch = FetchType.EAGER)
+    @JoinTable(name = "UserCategory",
+            joinColumns = @JoinColumn(name = "category_id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "user_id", nullable = false),
+            foreignKey = @ForeignKey(name = "fk_User_has_Category_Category1"),
+            inverseForeignKey = @ForeignKey(name = "fk_User_has_Category_User1")
+    )
+    private Set<User> users = new HashSet<>();
+
     public Integer getCategoryId() {
         return categoryId;
     }
@@ -44,6 +53,29 @@ public class Category {
     public void setCategoryDescription(String categoryDescription) {
         this.categoryDescription = categoryDescription;
     }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public Set<Content> getContents() {
+        return contents;
+    }
+
+//    @Override
+//    public String toString() {
+//        return "Category{" +
+//                "categoryId=" + categoryId +
+//                ", categoryName='" + categoryName + '\'' +
+//                ", categoryDescription='" + categoryDescription + '\'' +
+//                ", contents=" + contents +
+//                ", users=" + users +
+//                '}';
+//    }
 
     @Override
     public boolean equals(Object o) {

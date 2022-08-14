@@ -22,16 +22,17 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST}, fetch=FetchType.EAGER)
     @JoinTable(name = "Collaborator",
-    joinColumns = @JoinColumn(name = "user_id", nullable = false),
+            joinColumns = @JoinColumn(name = "user_id", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "content_id", nullable = false),
-            foreignKey = @ForeignKey(name = "user_content"),
-            inverseForeignKey = @ForeignKey(name = "content_user")
+            foreignKey = @ForeignKey(name = "fk_User_has_Content_User"),
+            inverseForeignKey = @ForeignKey(name = "fk_User_has_Content_Content1")
     )
-//    @EqualsAndHashCode.Exclude
-//    @FieldNameConstants.Exclude
     private Set<Content> contents = new HashSet<>();
+
+    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
+    private Set<Category> categories = new HashSet<>();
 
     public Integer getUserId() {
         return userId;
@@ -67,6 +68,10 @@ public class User {
 
     public Set<Content> getContents() {
         return contents;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
     }
 
     @Override

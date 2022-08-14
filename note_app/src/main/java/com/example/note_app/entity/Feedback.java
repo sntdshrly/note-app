@@ -1,5 +1,7 @@
 package com.example.note_app.entity;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.Objects;
 

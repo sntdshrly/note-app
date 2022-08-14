@@ -1,5 +1,7 @@
 package com.example.note_app.entity;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.HashSet;
@@ -25,21 +27,38 @@ public class Content {
     @Basic
     @Column(name = "updated_at")
     private Timestamp updatedAt;
-    @OneToMany(mappedBy = "content")
+    @OneToMany(mappedBy = "content", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+//    @Cascade(value = org.hibernate.annotations.CascadeType.DELETE)
     private List<Feedback> feedbacks;
 
-    @ManyToMany(mappedBy = "contents", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    @ManyToMany(mappedBy = "contents", fetch=FetchType.EAGER)
+//    @JoinTable(name = "Collaborator",
+//            inverseJoinColumns = @JoinColumn(name = "user_id", nullable = false),
+//            joinColumns = @JoinColumn(name = "content_id", nullable = false),
+//            inverseForeignKey = @ForeignKey(name = "fk_User_has_Content_User"),
+//            foreignKey = @ForeignKey(name = "fk_User_has_Content_Content1")
+//    )
     private Set<User> users = new HashSet<>();
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST}, fetch=FetchType.EAGER)
     @JoinTable(name = "ContentCategory",
             joinColumns = @JoinColumn(name = "content_id", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "category_id", nullable = false)
+            inverseJoinColumns = @JoinColumn(name = "category_id", nullable = false),
+            foreignKey = @ForeignKey(name = "fk_Content_has_Category_Content1"),
+            inverseForeignKey = @ForeignKey(name = "fk_Content_has_Category_Category1")
     )
     private Set<Category> categories = new HashSet<>();
 
     public Set<User> getUsers() {
         return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 
     public Set<Category> getCategories() {
