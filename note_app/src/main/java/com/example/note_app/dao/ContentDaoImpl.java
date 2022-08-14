@@ -3,6 +3,8 @@ package com.example.note_app.dao;
 import com.example.note_app.entity.Category;
 import com.example.note_app.entity.Content;
 import com.example.note_app.entity.User;
+import com.example.note_app.entity.relationship.Collaborator;
+import com.example.note_app.entity.relationship.UserCategory;
 import com.example.note_app.util.DaoService;
 import com.example.note_app.util.HibernateUtility;
 import com.example.note_app.util.MySQLConnection;
@@ -38,6 +40,25 @@ public class ContentDaoImpl implements DaoService<Content> {
         return result;
     }
 
+    public int addData(Content object, User user) {
+        int result;
+        Session session = HibernateUtility.getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+            session.save(object);
+//            transaction.commit();
+            session.save(new Collaborator(object.getContentId(), user.getUserId()));
+            transaction.commit();
+            result = 1;
+        } catch (Exception e) {
+            transaction.rollback();
+            result = -1;
+        }
+
+        session.close();
+        return result;
+    }
     @Override
     public int deleteData(Content object) {
         int result;
@@ -45,6 +66,25 @@ public class ContentDaoImpl implements DaoService<Content> {
         Transaction transaction = session.beginTransaction();
 
         try {
+            session.delete(object);
+            transaction.commit();
+            result = 1;
+        } catch (Exception e) {
+            transaction.rollback();
+            result = -1;
+        }
+
+        session.close();
+        return result;
+    }
+
+    public int deleteData(Content object, User user) {
+        int result;
+        Session session = HibernateUtility.getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+            session.delete(fetchCollaborator(object, user));
             session.delete(object);
             transaction.commit();
             result = 1;
@@ -118,5 +158,23 @@ public class ContentDaoImpl implements DaoService<Content> {
 
         session.close();
         return contents;
+    }
+
+    private Collaborator fetchCollaborator(Content content, User user) {
+        Session session = HibernateUtility.getSession();
+
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Collaborator> query = builder.createQuery(Collaborator.class);
+        Root<Collaborator> root = query.from(Collaborator.class);
+
+        Predicate predicate1 = builder.equal(root.get("user_id"), user.getUserId());
+        Predicate predicate2 = builder.equal(root.get("content_id"), content.getContentId());
+        Predicate predicate = builder.and(predicate1, predicate2);
+        query.where(predicate);
+
+        Collaborator collaborator = session.createQuery(query).getSingleResult();
+
+        session.close();
+        return collaborator;
     }
 }

@@ -3,9 +3,11 @@ package com.example.note_app.controller;
 import com.example.note_app.Main;
 import com.example.note_app.dao.CategoryDaoImpl;
 import com.example.note_app.dao.ContentDaoImpl;
+import com.example.note_app.dao.UserDaoImpl;
 import com.example.note_app.entity.Category;
 import com.example.note_app.entity.Content;
 import com.example.note_app.entity.User;
+import com.example.note_app.entity.relationship.UserCategory;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -56,13 +58,13 @@ public class MainController implements Initializable {
     private Label labelKeterangan;
     @FXML
     private TextArea txtArea;
-    @FXML
-    private TextField txtCategory;
+
 
     /**
      * User hasil login
      */
     private User loggedUser;
+    private UserDaoImpl userDao;
 
     /**
      * Content Variables
@@ -86,18 +88,21 @@ public class MainController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         showLogin();
 
-        // Content
-        contentDao = new ContentDaoImpl();
-        contents = FXCollections.observableArrayList();
-        contents.addAll(loggedUser.getContents());
-        listContent.setItems(contents);
-        initContent();
+        // User
+        userDao = new UserDaoImpl();
 
         // Category
         categoryDao = new CategoryDaoImpl();
         categories = FXCollections.observableArrayList();
         refreshCategory();
         initCategory();
+
+        // Content
+        contentDao = new ContentDaoImpl();
+        contents = FXCollections.observableArrayList();
+        refreshContent();
+        initContent();
+
     }
     private void reset() {
         txtTitle.clear();
@@ -113,74 +118,82 @@ public class MainController implements Initializable {
      * Content method
      * **/
     private void initContent() {
+        listContent.getSelectionModel().selectFirst();
+        selectedContent = listContent.getSelectionModel().getSelectedItem();
         listCategory.getSelectionModel().selectedItemProperty().addListener((observableValue, category, t1) -> {
             Category selectedCategory = listCategory.getSelectionModel().getSelectedItem();
             contents = FXCollections.observableArrayList(loggedUser.getContents());
             contents = contents.filtered(content -> content.getCategories().contains(selectedCategory));
             listContent.setItems(contents);
         });
+
+        listContent.getSelectionModel().selectedItemProperty().addListener((observableValue, content, t1) -> {
+            selectedContent = listContent.getSelectionModel().getSelectedItem();
+            if (selectedContent != null) {
+                labelKeterangan.setText("Created in : "+selectedContent.getCreatedAt()+"\t Updated in : "+selectedContent.getUpdatedAt());
+                txtTitle.setText(selectedContent.getContentTitle());
+                txtArea.setText(selectedContent.getContentField());
+            }
+        });
     }
     @FXML
     protected void onActionSaveContent(ActionEvent actionEvent) {
-        Content content = new Content();
-        content.setContentTitle(txtTitle.getText().trim());
-        content.setContentField(txtArea.getText().trim());
-        if (contentDao.addData(content) == 1) {
+        selectedContent.setContentTitle(txtTitle.getText().trim());
+        selectedContent.setContentField(txtArea.getText());
+        if (contentDao.updateData(selectedContent) == 1) {
             labelStatus.setText("Note Saved!");
-            contents.clear();
-            contents.addAll(contentDao.fetchAll());
-        }
-    }
-
-    @FXML
-    protected void onActionEditContent(ActionEvent actionEvent) {
-        if (txtTitle.getText().trim().isEmpty() || txtTitle.getText().trim().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Please fill in the blank!");
-            alert.show();
-        }
-        else {
-            selectedContent.setContentTitle(txtTitle.getText().trim());
-            selectedContent.setContentField(txtArea.getText().trim());
-            if (contentDao.updateData(selectedContent) == 1) {
-                labelStatus.setText("Note Edited!");
-                contents.clear();
-                contents.addAll(contentDao.fetchAll());
-                reset();
-            }
+            refreshContent();
         }
     }
 
     public void contentClicked(MouseEvent mouseEvent) {
-        selectedContent = listContent.getSelectionModel().getSelectedItem();
-        if (selectedContent != null) {
-            labelKeterangan.setText("Created in : "+selectedContent.getCreatedAt()+"\t Updated in : "+selectedContent.getUpdatedAt());
-            txtTitle.setText(selectedContent.getContentTitle());
-            txtArea.setText(selectedContent.getContentField());
-            btnSave.setDisable(true);
-            btnUpdate.setDisable(false);
-            btnDelete.setDisable(false);
-        }
+//        selectedContent = listContent.getSelectionModel().getSelectedItem();
+//        if (selectedContent != null) {
+//            labelKeterangan.setText("Created in : "+selectedContent.getCreatedAt()+"\t Updated in : "+selectedContent.getUpdatedAt());
+//            txtTitle.setText(selectedContent.getContentTitle());
+//            txtArea.setText(selectedContent.getContentField());
+//        }
     }
 
     @FXML
     protected void onActionDeleteContent(ActionEvent actionEvent) {
-//        ContentDaoImpl contentDao = new ContentDaoImpl();
-//        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-//        alert.setContentText("Are you sure want to delete?");
-//        alert.showAndWait();
-//        if (alert.getResult() == ButtonType.OK) {
-//            try {
-//                if (contentDao.deleteData(selectedContent) == 1) {
-//                    labelStatus.setText("Note Deleted!");
-//                    contents.clear();
-//                    contents.addAll(contentDao.fetchAll());
-//                    reset();
-//                }
-//            } catch (SQLException | ClassNotFoundException e) {
-//                throw new RuntimeException(e);
-//            }
-//        }
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setContentText("Are you sure want to delete?");
+        alert.showAndWait();
+        if (alert.getResult() == ButtonType.OK) {
+                if (contentDao.deleteData(selectedContent, loggedUser) == 1) {
+                    labelStatus.setText("Note Deleted!");
+                    refreshContent();
+                    listContent.getSelectionModel().selectFirst();
+                }
+        }
+    }
+
+    public void newNote() {
+        Content newContent = new Content();
+
+        Set<User> userContent = new HashSet<>();
+        userContent.add(loggedUser);
+        Set<Category> categoryContent = new HashSet<>();
+        categoryContent.add(listCategory.getSelectionModel().getSelectedItem());
+
+        newContent.setContentTitle("Untitled");
+        newContent.setUsers(userContent);
+        newContent.setCategories(categoryContent);
+
+        contentDao.addData(newContent, loggedUser);
+
+        refreshContent();
+
+        listContent.getSelectionModel().select(newContent);
+        txtArea.requestFocus();
+    }
+
+    private void refreshContent() {
+        loggedUser = userDao.fetchUser(loggedUser.getUsername(), loggedUser.getPassword());
+        contents = FXCollections.observableArrayList(loggedUser.getContents());
+        contents = contents.filtered(content -> content.getCategories().contains(listCategory.getSelectionModel().getSelectedItem()));
+        listContent.setItems(contents);
     }
 
 
@@ -188,6 +201,7 @@ public class MainController implements Initializable {
      * Category method
      */
     private void initCategory() {
+        listCategory.getSelectionModel().selectFirst();
         listCategory.setEditable(true);
         listCategory.setCellFactory(TextFieldListCell.forListView(new StringConverter<Category>() {
             @Override
@@ -209,40 +223,47 @@ public class MainController implements Initializable {
         MenuItem delete = new MenuItem("Delete Category");
         deleteMenu.getItems().add(delete);
         delete.setOnAction(actionEvent -> {
-                    categoryDao.deleteData(listCategory.getSelectionModel().getSelectedItem());
-                    categories.remove(listCategory.getSelectionModel().getSelectedItem());
+                    UserCategory userCategory = categoryDao.fetchUserCategory(listCategory.getSelectionModel().getSelectedItem(), loggedUser);
+                    categoryDao.deleteData(userCategory);
+                    refreshCategory();
                 }
         );
 
         listCategory.setContextMenu(deleteMenu);
-        txtCategory.setOnKeyPressed(keyEvent -> { if (keyEvent.getCode() == KeyCode.ENTER) { saveCategory(null); }});
     }
 
     public void editCommit(ListView.EditEvent<Category> editEvent) {
+        Set<User> userCategory = new HashSet<>();
+        userCategory.add(loggedUser);
+        editEvent.getNewValue().setUsers(userCategory);
+
         categoryDao.updateData(editEvent.getNewValue());
         refreshCategory();
     }
 
-    public void saveCategory(ActionEvent actionEvent) {
+    public void newCategory(ActionEvent actionEvent) {
         Category newCategory = new Category();
-        newCategory.setCategoryName(txtCategory.getText());
-        newCategory.setCategoryDescription(txtCategory.getText());
+        Set<User> userCategory = new HashSet<>();
+        userCategory.add(loggedUser);
 
+        newCategory.setCategoryName("Untitled");
+        newCategory.setUsers(userCategory);
         categoryDao.addData(newCategory);
+        categories.add(newCategory);
 
-        txtCategory.setText("");
-        refreshCategory();
+        listCategory.getSelectionModel().select(newCategory);
+        int i = listCategory.getSelectionModel().getSelectedIndex();
+        listCategory.scrollTo(i);
+        listCategory.edit(i);
     }
 
     private void refreshCategory() {
-        Set<Category> categorySet = new HashSet<>();
-        for (Content content: contents) {
-            categorySet.addAll(content.getCategories());
-        }
+        loggedUser = userDao.fetchUser(loggedUser.getUsername(), loggedUser.getPassword());
         categories.clear();
-        categories.addAll(categorySet);
+        categories.addAll(loggedUser.getCategories());
         listCategory.setItems(categories);
     }
+
 
     /**
      * Login method

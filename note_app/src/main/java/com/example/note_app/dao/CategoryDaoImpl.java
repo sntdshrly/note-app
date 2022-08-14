@@ -1,9 +1,10 @@
 package com.example.note_app.dao;
 
 import com.example.note_app.entity.Category;
+import com.example.note_app.entity.User;
+import com.example.note_app.entity.relationship.UserCategory;
 import com.example.note_app.util.DaoService;
 import com.example.note_app.util.HibernateUtility;
-import com.example.note_app.util.MySQLConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Session;
@@ -11,10 +12,9 @@ import org.hibernate.Transaction;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.util.List;
 
 public class CategoryDaoImpl implements DaoService<Category> {
 
@@ -45,6 +45,24 @@ public class CategoryDaoImpl implements DaoService<Category> {
 
         try {
             session.delete(object);
+            transaction.commit();
+            result = 1;
+        } catch (Exception e) {
+            transaction.rollback();
+            result = -1;
+        }
+
+        session.close();
+        return result;
+    }
+
+    public int deleteData(UserCategory userCategory) {
+        int result;
+        Session session = HibernateUtility.getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+            session.delete(userCategory);
             transaction.commit();
             result = 1;
         } catch (Exception e) {
@@ -88,5 +106,23 @@ public class CategoryDaoImpl implements DaoService<Category> {
 
         session.close();
         return categories;
+    }
+
+    public UserCategory fetchUserCategory(Category category, User user) {
+        Session session = HibernateUtility.getSession();
+
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<UserCategory> query = builder.createQuery(UserCategory.class);
+        Root<UserCategory> root = query.from(UserCategory.class);
+
+        Predicate predicate1 = builder.equal(root.get("user_id"), user.getUserId());
+        Predicate predicate2 = builder.equal(root.get("category_id"), category.getCategoryId());
+        Predicate predicate = builder.and(predicate1, predicate2);
+        query.where(predicate);
+
+        UserCategory loginUser = session.createQuery(query).getSingleResult();
+
+        session.close();
+        return loginUser;
     }
 }
