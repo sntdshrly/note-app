@@ -8,6 +8,7 @@ import com.example.note_app.entity.Category;
 import com.example.note_app.entity.Content;
 import com.example.note_app.entity.User;
 import com.example.note_app.entity.relationship.UserCategory;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -58,6 +59,8 @@ public class MainController implements Initializable {
     private Label labelKeterangan;
     @FXML
     private TextArea txtArea;
+    @FXML
+    private Label labelUser;
 
 
     /**
@@ -90,6 +93,7 @@ public class MainController implements Initializable {
 
         // User
         userDao = new UserDaoImpl();
+        labelUser.setText(loggedUser.getUsername());
 
         // Category
         categoryDao = new CategoryDaoImpl();
@@ -120,6 +124,10 @@ public class MainController implements Initializable {
     private void initContent() {
         listContent.getSelectionModel().selectFirst();
         selectedContent = listContent.getSelectionModel().getSelectedItem();
+        labelKeterangan.setText("Created in : "+selectedContent.getCreatedAt()+"\t Updated in : "+selectedContent.getUpdatedAt());
+        txtTitle.setText(selectedContent.getContentTitle());
+        txtArea.setText(selectedContent.getContentField());
+
         listCategory.getSelectionModel().selectedItemProperty().addListener((observableValue, category, t1) -> {
             Category selectedCategory = listCategory.getSelectionModel().getSelectedItem();
             contents = FXCollections.observableArrayList(loggedUser.getContents());
@@ -285,6 +293,10 @@ public class MainController implements Initializable {
         loginController.setMainController(this);
 
         stage.showAndWait();
+        if (loggedUser == null) {
+            Platform.exit();
+            System.exit(0);
+        }
     }
 
     public void setLoggedUser(User user) {
