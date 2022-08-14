@@ -1,3 +1,25 @@
+.background-light {
+    -fx-background-color: #fff;
+}
+
+.accent-light {
+    -fx-background-color: #dcdde1;
+}
+
+.radius {
+    -fx-background-radius: 30;
+}
+
+.transparent {
+    -fx-background-color: rgba(0,0,0,0);
+}
+
 .button:hover {
-    -fx-background-color: green;
+    -fx-background-color: #2f3640;
+    -fx-text-fill: #f5f6fa;
+}
+
+.button {
+    -fx-background-color: #dcdde1;
+    -fx-background-radius: 30;
 }

@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane stylesheets="@style/style.css" prefHeight="405.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.note_app.controller.LoginController">
+<AnchorPane prefHeight="405.0" prefWidth="600.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.note_app.controller.LoginController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -26,9 +26,9 @@
                      </font>
                   </Label>
                   <Label text="Username :" textFill="WHITE" />
-                  <TextField fx:id="username" prefHeight="25.0" prefWidth="477.0" />
+                  <TextField fx:id="username" prefHeight="25.0" prefWidth="477.0" styleClass="radius" />
                   <Label layoutX="285.0" layoutY="157.0" text="Password :" textFill="WHITE" />
-                  <PasswordField fx:id="password" layoutX="10.0" layoutY="174.0" />
+                  <PasswordField fx:id="password" layoutX="10.0" layoutY="174.0" styleClass="radius" />
                   <HBox prefHeight="64.0" prefWidth="342.0">
                      <children>
                         <Button mnemonicParsing="false" onAction="#signIn" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: green;" text="Sign in" textFill="WHITE">
@@ -60,7 +60,7 @@
                <children>
                   <ImageView fitHeight="413.0" fitWidth="236.0" layoutX="-4.0" layoutY="-7.0">
                      <image>
-                        <Image url="@../../../../java/com/example/note_app/img/bg-1.jpg" />
+                        <Image url="@img/bg-1.jpg" />
                      </image>
                   </ImageView>
                </children></Pane>
