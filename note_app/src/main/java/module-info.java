@@ -16,6 +16,8 @@ module com.example.note_app {
     opens com.example.note_app.dao to javafx.fxml;
     exports com.example.note_app.entity;
     opens com.example.note_app.entity;
+    opens com.example.note_app.entity.relationship;
+    exports com.example.note_app.entity.relationship;
     exports com.example.note_app.util;
     opens com.example.note_app.util to javafx.fxml;
 }
