@@ -15,9 +15,9 @@
 
 <AnchorPane fx:id="parent" prefHeight="405.0" prefWidth="600.0" stylesheets="@style/light.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.note_app.controller.LoginController">
    <children>
-      <BorderPane prefHeight="200.0" prefWidth="400.0" styleClass="primary-color" stylesheets="@style/light.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane prefHeight="200.0" prefWidth="400.0" styleClass="primary-color" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
-            <Pane prefHeight="400.0" prefWidth="228.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
+            <Pane prefHeight="400.0" prefWidth="228.0" BorderPane.alignment="CENTER">
                <children>
                   <ImageView fitHeight="420.0" fitWidth="236.0" layoutX="-4.0" layoutY="-60.0">
                      <image>

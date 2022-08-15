@@ -114,18 +114,16 @@ public class LoginController {
         }
     }
     private void setLightMode(){
-        parent.getStylesheets().remove(Main.class.getResource("style/dark.css"));
+        parent.getStylesheets().remove(0);
         parent.getStylesheets().add(Main.class.getResource("style/light.css").toExternalForm());
         Image image = new Image(String.valueOf(Main.class.getResource("img/dark.png")));
         imgMode.setImage(image);
-        System.out.println("light");
     }
     private void setDarkMode(){
-        parent.getStylesheets().remove(Main.class.getResource("style/light.css"));
+        parent.getStylesheets().remove(0);
         parent.getStylesheets().add(Main.class.getResource("style/dark.css").toExternalForm());
         Image image = new Image(String.valueOf(Main.class.getResource("img/light.png")));
         imgMode.setImage(image);
-        System.out.println("dark");
     }
 
     public boolean checkLoginInfo() {
