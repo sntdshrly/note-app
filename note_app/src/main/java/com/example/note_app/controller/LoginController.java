@@ -24,6 +24,10 @@ import java.nio.file.Paths;
 
 public class LoginController {
     @FXML
+    private TextField pass_text;
+    @FXML
+    private CheckBox pass_toggle;
+    @FXML
     private Label lblForgotPass;
     @FXML
     private Button btnSignIn;
@@ -61,6 +65,7 @@ public class LoginController {
                 signIn(null);
             }
         });
+        this.onActionToggleVisible(null);
     }
 
     public void signIn(ActionEvent actionEvent) {
@@ -142,5 +147,18 @@ public class LoginController {
             return true;
         }
         return false;
+    }
+
+    @FXML
+    public void onActionToggleVisible(ActionEvent event) {
+        if (pass_toggle.isSelected()) {
+            pass_text.setText(password.getText());
+            pass_text.setVisible(true);
+            password.setVisible(false);
+            return;
+        }
+        password.setText(pass_text.getText());
+        password.setVisible(true);
+        pass_text.setVisible(false);
     }
 }

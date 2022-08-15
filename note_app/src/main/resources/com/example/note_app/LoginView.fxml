@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Separator?>
@@ -13,9 +14,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="parent" prefHeight="405.0" prefWidth="600.0" stylesheets="@style/light.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.note_app.controller.LoginController">
+<AnchorPane fx:id="parent" prefHeight="405.0" prefWidth="600.0" styleClass="primary-color" stylesheets="@style/light.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.note_app.controller.LoginController">
    <children>
-      <BorderPane prefHeight="200.0" prefWidth="400.0" styleClass="primary-color" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane prefHeight="200.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
             <Pane prefHeight="400.0" prefWidth="228.0" BorderPane.alignment="CENTER">
                <children>
@@ -31,19 +32,24 @@
                <children>
                   <TextField fx:id="username" layoutX="7.0" prefHeight="34.0" prefWidth="275.0" promptText="username" />
                   <PasswordField fx:id="password" layoutX="7.0" layoutY="61.0" prefHeight="34.0" prefWidth="275.0" promptText="password" />
-                  <Button fx:id="btnSignIn" layoutX="145.0" layoutY="125.0" mnemonicParsing="false" onAction="#signIn" prefHeight="34.0" prefWidth="137.0" text="Sign in" />
+                  <TextField fx:id="pass_text" layoutX="7.0" layoutY="61.0" prefHeight="34.0" prefWidth="275.0" />
+                  <Button fx:id="btnSignIn" layoutX="145.0" layoutY="125.0" mnemonicParsing="false" onAction="#signIn" prefHeight="34.0" prefWidth="137.0" styleClass="primary-signIn" text="Sign in" />
                   <Label fx:id="lblForgotPass" alignment="CENTER" layoutX="8.0" layoutY="131.0" prefHeight="23.0" prefWidth="93.0" text="Forgot Password" textFill="#5383ff">
                      <font>
                         <Font name="Segoe UI" size="12.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnSignUp" layoutX="4.0" layoutY="215.0" mnemonicParsing="false" onAction="#signUp" prefHeight="34.0" prefWidth="275.0" style="-fx-background-color: #0C39FF;" text="Sign up" textFill="WHITE" />
+                  <Button fx:id="btnSignUp" layoutX="4.0" layoutY="215.0" mnemonicParsing="false" onAction="#signUp" prefHeight="34.0" prefWidth="275.0" styleClass="primary-button" text="Sign up" textFill="WHITE" />
                   <Separator layoutX="8.0" layoutY="190.0" prefHeight="7.0" prefWidth="275.0" />
-                  <Label alignment="CENTER" layoutX="126.0" layoutY="179.0" prefHeight="23.0" prefWidth="31.0" style="-fx-background-color: #fff;" text="Or" textFill="#5b5a5a">
+                  <Label alignment="CENTER" layoutX="126.0" layoutY="179.0" prefHeight="23.0" prefWidth="31.0" styleClass="primary-color" text="Or" textFill="#5b5a5a">
                      <font>
                         <Font name="Segoe UI" size="12.0" />
                      </font>
                   </Label>
+                  <CheckBox fx:id="pass_toggle" layoutX="8.0" layoutY="95.0" mnemonicParsing="false" onAction="#onActionToggleVisible" text="Show Password" styleClass="text-color">
+                     <padding>
+                        <Insets top="6.0" />
+                     </padding></CheckBox>
                </children>
                <opaqueInsets>
                   <Insets />
@@ -54,7 +60,7 @@
             </Pane>
          </right>
          <top>
-            <Button fx:id="btnMode" mnemonicParsing="false" onAction="#onActionMode" prefHeight="26.0" prefWidth="26.0" BorderPane.alignment="CENTER">
+            <Button fx:id="btnMode" mnemonicParsing="false" onAction="#onActionMode" prefHeight="26.0" prefWidth="26.0" styleClass="primary-color" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets left="490.0" top="20.0" />
                </BorderPane.margin>
