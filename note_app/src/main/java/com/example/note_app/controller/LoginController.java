@@ -1,17 +1,33 @@
 package com.example.note_app.controller;
 
+import com.example.note_app.Main;
 import com.example.note_app.dao.UserDaoImpl;
 import com.example.note_app.entity.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.Cursor;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.AnchorPane;
 
 import javax.persistence.NoResultException;
 
 public class LoginController {
+    @FXML
+    private Label lblForgotPass;
+    @FXML
+    private Button btnSignIn;
+    @FXML
+    private Button btnSignUp;
+    @FXML
+    private Button btnMode;
+    @FXML
+    private ImageView imgMode;
+    @FXML
+    private AnchorPane parent;
     @FXML
     private TextField username;
     @FXML
@@ -21,6 +37,14 @@ public class LoginController {
     private MainController mainController;
 
     public void initialize() {
+        /**
+         * Setting cursor
+         */
+        btnMode.setCursor(Cursor.HAND);
+        btnSignIn.setCursor(Cursor.HAND);
+        btnSignUp.setCursor(Cursor.HAND);
+        lblForgotPass.setCursor(Cursor.HAND);
+
         userDao = new UserDaoImpl();
         password.setOnKeyPressed(keyEvent -> {
             if (keyEvent.getCode() == KeyCode.ENTER) {
@@ -64,5 +88,30 @@ public class LoginController {
 
     public void setMainController(MainController controller) {
         mainController = controller;
+    }
+
+    private boolean isLightMode = true;
+    public void onActionMode(ActionEvent actionEvent){
+        isLightMode = !isLightMode;
+        if(isLightMode){
+            setLightMode();
+        }
+        else{
+            setDarkMode();
+        }
+    }
+    private void setLightMode(){
+        parent.getStylesheets().remove(Main.class.getResource("style/dark.css"));
+        parent.getStylesheets().add(Main.class.getResource("style/light.css").toExternalForm());
+        Image image = new Image(String.valueOf(Main.class.getResource("img/dark.png")));
+        imgMode.setImage(image);
+        System.out.println("light");
+    }
+    private void setDarkMode(){
+        parent.getStylesheets().remove(Main.class.getResource("style/light.css"));
+        parent.getStylesheets().add(Main.class.getResource("style/dark.css").toExternalForm());
+        Image image = new Image(String.valueOf(Main.class.getResource("img/light.png")));
+        imgMode.setImage(image);
+        System.out.println("dark");
     }
 }
