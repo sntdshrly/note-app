@@ -3,6 +3,7 @@ package com.example.note_app.entity;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
@@ -20,6 +21,9 @@ public class Feedback {
     @ManyToOne
     @JoinColumn(name = "content_id", referencedColumnName = "content_id", nullable = false)
     private Content content;
+    @Basic
+    @Column(name = "status")
+    private Boolean status;
 
     public Integer getFeedbackId() {
         return feedbackId;
@@ -36,18 +40,25 @@ public class Feedback {
     public void setFeedbackField(String feedbackField) {
         this.feedbackField = feedbackField;
     }
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Feedback feedback = (Feedback) o;
-        return Objects.equals(feedbackId, feedback.feedbackId) && Objects.equals(feedbackField, feedback.feedbackField);
+        return Objects.equals(feedbackId, feedback.feedbackId) && Objects.equals(feedbackField, feedback.feedbackField) && Objects.equals(status, feedback.status);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackId, feedbackField);
+        return Objects.hash(feedbackId, feedbackField, status);
     }
 
     public User getUser() {
@@ -65,4 +76,10 @@ public class Feedback {
     public void setContent(Content content) {
         this.content = content;
     }
+
+    @Override
+    public String toString() {
+        return feedbackField;
+    }
+
 }
