@@ -57,6 +57,7 @@ public class LoginController {
         btnSignIn.setCursor(Cursor.HAND);
         btnSignUp.setCursor(Cursor.HAND);
         lblForgotPass.setCursor(Cursor.HAND);
+        pass_toggle.setCursor(Cursor.HAND);
 
         gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
         userDao = new UserDaoImpl();
