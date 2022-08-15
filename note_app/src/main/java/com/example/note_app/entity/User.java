@@ -1,5 +1,7 @@
 package com.example.note_app.entity;
 
+import com.google.gson.annotations.Expose;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
@@ -14,12 +16,14 @@ public class User {
     private Integer userId;
     @Basic
     @Column(name = "username")
+    @Expose
     private String username;
     @Basic
     @Column(name = "email")
     private String email;
     @Basic
     @Column(name = "password")
+    @Expose
     private String password;
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST}, fetch=FetchType.EAGER)

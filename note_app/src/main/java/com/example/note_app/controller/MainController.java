@@ -124,9 +124,11 @@ public class MainController implements Initializable {
     private void initContent() {
         listContent.getSelectionModel().selectFirst();
         selectedContent = listContent.getSelectionModel().getSelectedItem();
-        labelKeterangan.setText("Created in : "+selectedContent.getCreatedAt()+"\t Updated in : "+selectedContent.getUpdatedAt());
-        txtTitle.setText(selectedContent.getContentTitle());
-        txtArea.setText(selectedContent.getContentField());
+        if (selectedContent != null) {
+            labelKeterangan.setText("Created in : " + selectedContent.getCreatedAt() + "\t Updated in : " + selectedContent.getUpdatedAt());
+            txtTitle.setText(selectedContent.getContentTitle());
+            txtArea.setText(selectedContent.getContentField());
+        }
 
         listCategory.getSelectionModel().selectedItemProperty().addListener((observableValue, category, t1) -> {
             Category selectedCategory = listCategory.getSelectionModel().getSelectedItem();
@@ -292,7 +294,9 @@ public class MainController implements Initializable {
         LoginController loginController = fxmlLoader.getController();
         loginController.setMainController(this);
 
-        stage.showAndWait();
+        if (!loginController.checkLoginInfo()) {
+            stage.showAndWait();
+        }
         if (loggedUser == null) {
             Platform.exit();
             System.exit(0);

@@ -6,9 +6,10 @@ module com.example.note_app {
     requires java.persistence;
     requires org.hibernate.orm.core;
     requires java.naming;
+    requires com.google.gson;
 
 
-    opens com.example.note_app to javafx.fxml;
+    opens com.example.note_app to javafx.fxml, com.google.gson;
     exports com.example.note_app;
     exports com.example.note_app.controller;
     opens com.example.note_app.controller to javafx.fxml;

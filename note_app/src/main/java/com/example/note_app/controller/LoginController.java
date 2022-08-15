@@ -3,6 +3,8 @@ package com.example.note_app.controller;
 import com.example.note_app.Main;
 import com.example.note_app.dao.UserDaoImpl;
 import com.example.note_app.entity.User;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
@@ -14,6 +16,11 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 
 import javax.persistence.NoResultException;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class LoginController {
     @FXML
@@ -35,6 +42,8 @@ public class LoginController {
 
     private UserDaoImpl userDao;
     private MainController mainController;
+    private Gson gson;
+    private final Path pathDefaultUser = Paths.get("data/user.json");
 
     public void initialize() {
         /**
@@ -45,6 +54,7 @@ public class LoginController {
         btnSignUp.setCursor(Cursor.HAND);
         lblForgotPass.setCursor(Cursor.HAND);
 
+        gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
         userDao = new UserDaoImpl();
         password.setOnKeyPressed(keyEvent -> {
             if (keyEvent.getCode() == KeyCode.ENTER) {
@@ -57,10 +67,13 @@ public class LoginController {
         if (checkForm()) {
             try {
                 User user = userDao.fetchUser(username.getText(), password.getText());
+                Files.write(pathDefaultUser, gson.toJson(user).getBytes());
                 mainController.setLoggedUser(user);
                 username.getScene().getWindow().hide();
             } catch (NoResultException e) {
                 showAlert("Username or Password wrong!", Alert.AlertType.ERROR);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         } else {
             showAlert("Please fill in blank space", Alert.AlertType.ERROR);
@@ -113,5 +126,23 @@ public class LoginController {
         Image image = new Image(String.valueOf(Main.class.getResource("img/light.png")));
         imgMode.setImage(image);
         System.out.println("dark");
+    }
+
+    public boolean checkLoginInfo() {
+        if (new File(pathDefaultUser.toUri()).exists()) {
+            // Load file
+            User savedUser = null;
+            try {
+                savedUser = gson.fromJson(Files.readString(pathDefaultUser), User.class);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            // Login
+            User user = userDao.fetchUser(savedUser.getUsername(), savedUser.getPassword());
+            mainController.setLoggedUser(user);
+            return true;
+        }
+        return false;
     }
 }
