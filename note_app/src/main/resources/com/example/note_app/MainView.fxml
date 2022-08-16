@@ -37,12 +37,12 @@
             </MenuBar>
             <HBox alignment="CENTER_RIGHT" prefHeight="0.0" prefWidth="1078.0" spacing="10.0">
                <children>
-                  <Label fx:id="labelUser" prefHeight="68.0" prefWidth="589.0" text="User" HBox.hgrow="ALWAYS">
+                  <Label fx:id="labelUser" prefHeight="25.0" prefWidth="552.0" text="User" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="labelStatus" alignment="CENTER_RIGHT" contentDisplay="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="344.0" textAlignment="RIGHT">
+                  <Label fx:id="labelStatus" alignment="CENTER_RIGHT" contentDisplay="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="235.0" textAlignment="RIGHT">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -57,6 +57,8 @@
                         <Insets />
                      </HBox.margin>
                   </Button>
+                  <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="1029.0" layoutY="15.0" mnemonicParsing="false" onAction="#showComments" text="Comments" />
+                  <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="1029.0" layoutY="15.0" mnemonicParsing="false" onAction="#showShare" text="Share" />
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -104,7 +106,7 @@
                               </TextField>
                               <Separator prefWidth="200.0" />
                               <Label fx:id="labelKeterangan" prefHeight="17.0" prefWidth="471.0" textAlignment="CENTER" />
-                              <TextArea fx:id="txtArea" maxWidth="-Infinity" prefHeight="496.0" prefWidth="803.0" styleClass="transparent" VBox.vgrow="ALWAYS">
+                              <TextArea fx:id="txtArea" maxWidth="-Infinity" prefHeight="496.0" prefWidth="803.0" styleClass="transparent" wrapText="true" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
