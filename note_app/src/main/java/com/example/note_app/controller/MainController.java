@@ -206,6 +206,8 @@ public class MainController implements Initializable {
         listContent.setItems(contents);
     }
 
+    public Content getSelectedContent() {return selectedContent;}
+
 
     /**
      * Category method
@@ -305,5 +307,25 @@ public class MainController implements Initializable {
 
     public void setLoggedUser(User user) {
         loggedUser = user;
+    }
+
+
+    /**
+     * Feedback method
+     */
+    public void showComments() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("FeedbackListView.fxml"));
+
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        stage.setTitle("Comments");
+        stage.setScene(scene);
+
+        FeedbackController feedbackController = fxmlLoader.getController();
+        feedbackController.setMainController(this);
+        feedbackController.setFeedbacks(selectedContent.getFeedbacks());
+        feedbackController.load();
+
+        stage.show();
     }
 }

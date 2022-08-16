@@ -1,47 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="594.0" prefWidth="514.0" style="-fx-background-radius: 1em;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.note_app.controller.FeedbackController">
-    <children>
-          <BorderPane prefHeight="584.0" prefWidth="518.0" style="-fx-background-color: #FBFCFC; -fx-background-radius: 1em;">
-              <top>
-                  <Pane prefHeight="125.0" prefWidth="542.0" BorderPane.alignment="CENTER">
-                      <children>
-                          <Label layoutX="23.0" layoutY="36.0" text="Feedback">
-                              <font>
-                                  <Font size="18.0" />
-                              </font>
-                          </Label>
-                          <Label layoutX="23.0" layoutY="63.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit." textFill="#989aad" />
-                      </children>
-                  </Pane>
-              </top>
-              <bottom>
-                  <BorderPane prefHeight="0.0" prefWidth="518.0" style="-fx-background-radius: 1em; -fx-border-radius: 1em;" BorderPane.alignment="CENTER" />
-              </bottom>
-              <center>
-                  <BorderPane prefHeight="274.0" prefWidth="542.0" BorderPane.alignment="CENTER">
-                      <center>
-                          <ScrollPane prefWidth="518.0" style="-fx-border-color: #FBFCFC;">
-                              <content>
-                                  <VBox fx:id="vBoxItem" alignment="TOP_CENTER" prefHeight="404.0" prefWidth="526.0" style="-fx-background-color: #FBFCFC;">
-                                      <padding>
-                                          <Insets bottom="10.0" top="10.0" />
-                                      </padding>
-                                  </VBox>
-                              </content>
-                          </ScrollPane>
-                      </center>
-                  </BorderPane>
-              </center>
-          </BorderPane>
-    </children>
+<AnchorPane id="AnchorPane" fx:id="parent" prefHeight="594.0" prefWidth="514.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.note_app.controller.FeedbackController">
+   <children>
+      <VBox fx:id="vboxComment" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding></VBox>
+   </children>
 </AnchorPane>
