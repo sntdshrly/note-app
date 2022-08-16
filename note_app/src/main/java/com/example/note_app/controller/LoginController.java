@@ -143,9 +143,13 @@ public class LoginController {
             }
 
             // Login
-            User user = userDao.fetchUser(savedUser.getUsername(), savedUser.getPassword());
-            mainController.setLoggedUser(user);
-            return true;
+            if (savedUser != null) {
+                User user = userDao.fetchUser(savedUser.getUsername(), savedUser.getPassword());
+                mainController.setLoggedUser(user);
+                return true;
+            } else {
+                return false;
+            }
         }
         return false;
     }
