@@ -309,6 +309,9 @@ public class MainController implements Initializable {
         loggedUser = user;
     }
 
+    public User getLoggedUser() {
+        return loggedUser;
+    }
 
     /**
      * Feedback method
@@ -323,9 +326,17 @@ public class MainController implements Initializable {
 
         FeedbackController feedbackController = fxmlLoader.getController();
         feedbackController.setMainController(this);
-        feedbackController.setFeedbacks(selectedContent.getFeedbacks());
+        feedbackController.setFeedbacks();
         feedbackController.load();
 
         stage.show();
+    }
+
+
+    /**
+     * Collaborator method
+     */
+    public void showShare() {
+
     }
 }

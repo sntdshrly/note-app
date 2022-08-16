@@ -1,5 +1,7 @@
 package com.example.note_app.controller;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -19,9 +21,17 @@ public class FeedbackItemController implements Initializable {
 
     }
 
-    public void setItem(String fieldTitle, String fieldFeedback) {
+    public void setItem(String fieldTitle, String fieldFeedback, boolean status) {
         this.fieldTitle.setText(fieldTitle);
         this.fieldFeedback.setText(fieldFeedback);
+        if (status) {
+            this.iconSelect.setOpacity(1);
+            this.btnInfo.setOpacity(0);
+        }
+    }
+
+    public void setButtonAction(EventHandler<ActionEvent> e) {
+        btnInfo.setOnAction(e);
     }
 
 }
