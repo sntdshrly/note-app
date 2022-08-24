@@ -19,6 +19,7 @@ import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldListCell;
@@ -50,6 +51,14 @@ public class MainController implements Initializable {
     private Button btnUpdate;
     @FXML
     private Button btnDelete;
+    @FXML
+    private Button btnComment;
+    @FXML
+    private Button btnShare;
+    @FXML
+    private Button btnAddCategory;
+    @FXML
+    private Button btnAddNote;
     @FXML
     private Button btnSettings;
     @FXML
@@ -96,6 +105,16 @@ public class MainController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        /**
+         * Setting cursor
+         */
+        btnSave.setCursor(Cursor.HAND);
+        btnDelete.setCursor(Cursor.HAND);
+        btnComment.setCursor(Cursor.HAND);
+        btnShare.setCursor(Cursor.HAND);
+        btnAddCategory.setCursor(Cursor.HAND);
+        btnAddNote.setCursor(Cursor.HAND);
+
         showLogin();
 
         // User

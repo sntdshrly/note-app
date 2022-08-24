@@ -53,10 +53,13 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="0.0" prefWidth="1078.0" spacing="10.0">
                <children>
-                  <Label fx:id="labelUser" prefHeight="26.0" prefWidth="768.0" styleClass="white-text" text="User" HBox.hgrow="ALWAYS">
+                  <Label fx:id="labelUser" prefHeight="26.0" prefWidth="763.0" styleClass="white-text" text="User" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="Book Antiqua" size="18.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
                   </Label>
                   <Label fx:id="labelStatus" alignment="CENTER_RIGHT" contentDisplay="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="235.0" styleClass="white-text" textAlignment="RIGHT">
                      <font>
@@ -79,11 +82,11 @@
                         <Font name="Book Antiqua" size="12.0" />
                      </font>
                   </Button>
-                  <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="1029.0" layoutY="15.0" mnemonicParsing="false" onAction="#showComments" text="Comments">
+                  <Button fx:id="btnComment" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="1029.0" layoutY="15.0" mnemonicParsing="false" onAction="#showComments" text="Comments">
                      <font>
                         <Font name="Book Antiqua" size="12.0" />
                      </font></Button>
-                  <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="1029.0" layoutY="15.0" mnemonicParsing="false" onAction="#showShare" text="Share">
+                  <Button fx:id="btnShare" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="1029.0" layoutY="15.0" mnemonicParsing="false" onAction="#showShare" text="Share">
                      <font>
                         <Font name="Book Antiqua" size="12.0" />
                      </font></Button>
@@ -91,6 +94,9 @@
                <padding>
                   <Insets bottom="5.0" left="5.0" right="10.0" top="20.0" />
                </padding>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
@@ -100,7 +106,7 @@
                            <children>
                               <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="200.0" spacing="5.0">
                                  <children>
-                                    <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#newCategory" prefHeight="25.0" prefWidth="209.0" text="Add New Category" textAlignment="CENTER">
+                                    <Button fx:id="btnAddCategory" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#newCategory" prefHeight="25.0" prefWidth="209.0" text="Add New Category" textAlignment="CENTER">
                                        <font>
                                           <Font name="Book Antiqua" size="13.0" />
                                        </font>
@@ -115,7 +121,7 @@
                               </VBox>
                               <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="200.0" spacing="5.0">
                                  <children>
-                                    <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#newNote" prefHeight="25.0" prefWidth="246.0" text="Add New Note" textAlignment="CENTER">
+                                    <Button fx:id="btnAddNote" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#newNote" prefHeight="25.0" prefWidth="246.0" text="Add New Note" textAlignment="CENTER">
                                        <font>
                                           <Font name="Book Antiqua" size="13.0" />
                                        </font>
@@ -125,7 +131,7 @@
                                     <ListView fx:id="listContent" onMouseClicked="#contentClicked" prefHeight="370.0" prefWidth="130.0" VBox.vgrow="ALWAYS" />
                                  </children>
                                  <padding>
-                                    <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
+                                    <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                                  </padding>
                               </VBox>
                            </children>
