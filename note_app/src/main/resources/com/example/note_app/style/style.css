@@ -14,12 +14,13 @@
     -fx-background-color: rgba(0,0,0,0);
 }
 
+
 .button:hover {
-    -fx-background-color: #2f3640;
+    -fx-background-color: #010221;
+    -fx-background-radius: 8;
     -fx-text-fill: #f5f6fa;
 }
-
 .button {
     -fx-background-color: #dcdde1;
-    -fx-background-radius: 30;
+    -fx-background-radius: 8;
 }

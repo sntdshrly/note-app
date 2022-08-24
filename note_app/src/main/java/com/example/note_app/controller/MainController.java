@@ -93,7 +93,7 @@ public class MainController implements Initializable {
 
         // User
         userDao = new UserDaoImpl();
-        labelUser.setText(loggedUser.getUsername());
+        labelUser.setText("Hello, " + loggedUser.getUsername() + "!");
 
         // Category
         categoryDao = new CategoryDaoImpl();
