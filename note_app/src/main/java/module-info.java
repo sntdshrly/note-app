@@ -7,6 +7,7 @@ module com.example.note_app {
     requires org.hibernate.orm.core;
     requires java.naming;
     requires com.google.gson;
+    requires com.jfoenix;
 
 
     opens com.example.note_app to javafx.fxml, com.google.gson;

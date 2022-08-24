@@ -5,6 +5,7 @@ import com.example.note_app.dao.UserDaoImpl;
 import com.example.note_app.entity.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.jfoenix.controls.JFXToggleButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
@@ -14,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import javax.persistence.NoResultException;
@@ -35,9 +37,7 @@ public class LoginController {
     @FXML
     private Button btnSignUp;
     @FXML
-    private Button btnMode;
-    @FXML
-    private ImageView imgMode;
+    private JFXToggleButton btnMode;
     @FXML
     private AnchorPane parent;
     @FXML
@@ -123,14 +123,16 @@ public class LoginController {
     private void setLightMode(){
         parent.getStylesheets().remove(0);
         parent.getStylesheets().add(Main.class.getResource("style/light.css").toExternalForm());
-        Image image = new Image(String.valueOf(Main.class.getResource("img/dark.png")));
-        imgMode.setImage(image);
+        btnMode.setText("OFF");
+        btnMode.setTextFill(Color.BLACK);
+//        Image image = new Image(String.valueOf(Main.class.getResource("img/dark.png")));
+//        imgMode.setImage(image);
     }
     private void setDarkMode(){
         parent.getStylesheets().remove(0);
         parent.getStylesheets().add(Main.class.getResource("style/dark.css").toExternalForm());
-        Image image = new Image(String.valueOf(Main.class.getResource("img/light.png")));
-        imgMode.setImage(image);
+        btnMode.setText("ON");
+        btnMode.setTextFill(Color.WHITE);
     }
 
     public boolean checkLoginInfo() {
