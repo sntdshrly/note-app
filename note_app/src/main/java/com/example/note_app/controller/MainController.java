@@ -8,6 +8,7 @@ import com.example.note_app.entity.Category;
 import com.example.note_app.entity.Content;
 import com.example.note_app.entity.User;
 import com.example.note_app.entity.relationship.UserCategory;
+import com.jfoenix.controls.JFXToggleButton;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
@@ -23,6 +24,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
@@ -61,6 +64,10 @@ public class MainController implements Initializable {
     private TextArea txtArea;
     @FXML
     private Label labelUser;
+    @FXML
+    private AnchorPane parent;
+    @FXML
+    private JFXToggleButton btnMode;
 
 
     /**
@@ -339,4 +346,33 @@ public class MainController implements Initializable {
     public void showShare() {
 
     }
+
+    /**
+     * Light/Dark mode
+     */
+
+    private boolean isLightMode = true;
+    public void onActionMode(ActionEvent actionEvent){
+        isLightMode = !isLightMode;
+        if(isLightMode){
+            setLightMode();
+        }
+        else{
+            setDarkMode();
+        }
+    }
+
+    private void setLightMode(){
+        parent.getStylesheets().remove(0);
+        parent.getStylesheets().add(Main.class.getResource("style/light-main.css").toExternalForm());
+        btnMode.setText("OFF");
+        btnMode.setTextFill(Color.BLACK);
+    }
+    private void setDarkMode(){
+        parent.getStylesheets().remove(0);
+        parent.getStylesheets().add(Main.class.getResource("style/dark-main.css").toExternalForm());
+        btnMode.setText("ON");
+        btnMode.setTextFill(Color.WHITE);
+    }
+
 }

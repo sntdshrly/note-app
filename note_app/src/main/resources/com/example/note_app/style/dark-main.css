@@ -1,0 +1,48 @@
+.background-light {
+    -fx-background-color: #010221;
+}
+
+.accent-light {
+    -fx-background-color: #dcdde1;
+}
+
+.radius {
+    -fx-background-radius: 30;
+}
+
+.transparent {
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+.button:hover {
+    -fx-background-color: #083167;
+    -fx-background-radius: 8;
+    -fx-text-fill: #f5f6fa;
+}
+.button {
+    -fx-background-color: #0b497e;
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+}
+
+.list-view{
+    -fx-background-color: #0b497e;
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+}
+.list-cell{
+    -fx-background-color: #0b497e;
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+}
+.label{
+    -fx-text-fill: white;
+}
+
+.title{
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+}
+.text-area{
+    -fx-background-color: #0b497e;
+}
