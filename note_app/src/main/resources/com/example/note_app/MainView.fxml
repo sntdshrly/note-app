@@ -50,12 +50,12 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="0.0" prefWidth="1078.0" spacing="10.0">
                <children>
-                  <Label fx:id="labelUser" prefHeight="26.0" prefWidth="768.0" text="User" HBox.hgrow="ALWAYS">
+                  <Label fx:id="labelUser" prefHeight="26.0" prefWidth="768.0" styleClass="white-text" text="User" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="Book Antiqua" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="labelStatus" alignment="CENTER_RIGHT" contentDisplay="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="235.0" textAlignment="RIGHT">
+                  <Label fx:id="labelStatus" alignment="CENTER_RIGHT" contentDisplay="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="235.0" styleClass="white-text" textAlignment="RIGHT">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -142,11 +142,11 @@
                                  </padding>
                               </TextField>
                               <Separator prefWidth="200.0" />
-                              <Label fx:id="labelKeterangan" prefHeight="18.0" prefWidth="536.0" textAlignment="CENTER">
+                              <Label fx:id="labelKeterangan" prefHeight="18.0" prefWidth="536.0" styleClass="white-text" textAlignment="CENTER">
                                  <padding>
                                     <Insets bottom="10.0" left="8.0" top="10.0" />
                                  </padding></Label>
-                              <TextArea fx:id="txtArea" maxWidth="-Infinity" prefHeight="593.0" prefWidth="896.0" styleClass="" wrapText="true" VBox.vgrow="ALWAYS">
+                              <TextArea fx:id="txtArea" maxWidth="-Infinity" prefHeight="593.0" prefWidth="896.0" style="-fx-border-radius: 8; -fx-background-radius: 8;" styleClass="" wrapText="true" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>

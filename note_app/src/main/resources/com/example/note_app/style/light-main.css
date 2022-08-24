@@ -36,3 +36,22 @@
     -fx-text-fill: black;
     -fx-background-color: transparent;
 }
+.text-area{
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-border-radius: 8;
+    -fx-border-color: black;
+}
+.text-area .content{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+.text-area .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+}
