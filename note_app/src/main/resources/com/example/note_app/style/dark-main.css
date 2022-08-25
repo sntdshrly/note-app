@@ -36,7 +36,9 @@
     -fx-text-fill: white;
     -fx-background-radius: 8;
 }
-
+.list-cell:selected {
+    -fx-background-color: #0b0864;
+}
 .white-text{
     -fx-text-fill: white;
 }

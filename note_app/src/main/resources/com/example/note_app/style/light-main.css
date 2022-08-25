@@ -35,6 +35,10 @@
     -fx-background-radius: 8;
     -fx-border-radius: 8;
 }
+.list-cell:selected {
+    -fx-background-color: #dcdde1;
+}
+
 .title{
     -fx-text-fill: black;
     -fx-background-color: transparent;
