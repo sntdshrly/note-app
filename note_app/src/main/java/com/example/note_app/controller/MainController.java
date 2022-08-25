@@ -9,6 +9,7 @@ import com.example.note_app.entity.Content;
 import com.example.note_app.entity.User;
 import com.example.note_app.entity.relationship.UserCategory;
 import com.jfoenix.controls.JFXToggleButton;
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
@@ -28,6 +29,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import javafx.util.StringConverter;
 
 import java.io.IOException;
@@ -40,7 +42,7 @@ public class MainController implements Initializable {
 
     /**
      * FXML Component
-     * **/
+     **/
     @FXML
     private ListView<Category> listCategory;
     @FXML
@@ -87,7 +89,7 @@ public class MainController implements Initializable {
 
     /**
      * Content Variables
-     * **/
+     **/
     private ObservableList<Content> contents;
     private ContentDaoImpl contentDao;
     private Content selectedContent;
@@ -134,6 +136,7 @@ public class MainController implements Initializable {
         initContent();
 
     }
+
     private void reset() {
         txtTitle.clear();
         txtArea.clear();
@@ -146,7 +149,7 @@ public class MainController implements Initializable {
 
     /**
      * Content method
-     * **/
+     **/
     private void initContent() {
         listContent.getSelectionModel().selectFirst();
         selectedContent = listContent.getSelectionModel().getSelectedItem();
@@ -166,21 +169,31 @@ public class MainController implements Initializable {
         listContent.getSelectionModel().selectedItemProperty().addListener((observableValue, content, t1) -> {
             selectedContent = listContent.getSelectionModel().getSelectedItem();
             if (selectedContent != null) {
-                labelKeterangan.setText("Created in : "+selectedContent.getCreatedAt()+"\t Updated in : "+selectedContent.getUpdatedAt());
+                labelKeterangan.setText("Created in : " + selectedContent.getCreatedAt() + "\t Updated in : " + selectedContent.getUpdatedAt());
                 txtTitle.setText(selectedContent.getContentTitle());
                 txtArea.setText(selectedContent.getContentField());
             }
         });
     }
+
     @FXML
     protected void onActionSaveContent(ActionEvent actionEvent) {
         selectedContent.setContentTitle(txtTitle.getText().trim());
         selectedContent.setContentField(txtArea.getText());
         if (contentDao.updateData(selectedContent) == 1) {
             labelStatus.setText("Note Saved!");
+            labelStatus.setVisible(true);
             refreshContent();
         }
+        PauseTransition visiblePause = new PauseTransition(
+                Duration.seconds(1)
+        );
+        visiblePause.setOnFinished(
+                event -> labelStatus.setVisible(false)
+        );
+        visiblePause.play();
     }
+
 
     public void contentClicked(MouseEvent mouseEvent) {
 //        selectedContent = listContent.getSelectionModel().getSelectedItem();
@@ -197,11 +210,19 @@ public class MainController implements Initializable {
         alert.setContentText("Are you sure want to delete?");
         alert.showAndWait();
         if (alert.getResult() == ButtonType.OK) {
-                if (contentDao.deleteData(selectedContent, loggedUser) == 1) {
-                    labelStatus.setText("Note Deleted!");
-                    refreshContent();
-                    listContent.getSelectionModel().selectFirst();
-                }
+            if (contentDao.deleteData(selectedContent, loggedUser) == 1) {
+                labelStatus.setText("Note Deleted!");
+                labelStatus.setVisible(true);
+                refreshContent();
+                listContent.getSelectionModel().selectFirst();
+            }
+            PauseTransition visiblePause = new PauseTransition(
+                    Duration.seconds(1)
+            );
+            visiblePause.setOnFinished(
+                    event -> labelStatus.setVisible(false)
+            );
+            visiblePause.play();
         }
     }
 
@@ -232,7 +253,9 @@ public class MainController implements Initializable {
         listContent.setItems(contents);
     }
 
-    public Content getSelectedContent() {return selectedContent;}
+    public Content getSelectedContent() {
+        return selectedContent;
+    }
 
 
     /**
@@ -371,23 +394,24 @@ public class MainController implements Initializable {
      */
 
     private boolean isLightMode = true;
-    public void onActionMode(ActionEvent actionEvent){
+
+    public void onActionMode(ActionEvent actionEvent) {
         isLightMode = !isLightMode;
-        if(isLightMode){
+        if (isLightMode) {
             setLightMode();
-        }
-        else{
+        } else {
             setDarkMode();
         }
     }
 
-    private void setLightMode(){
+    private void setLightMode() {
         parent.getStylesheets().remove(0);
         parent.getStylesheets().add(Main.class.getResource("style/light-main.css").toExternalForm());
         btnMode.setText("OFF");
         btnMode.setTextFill(Color.BLACK);
     }
-    private void setDarkMode(){
+
+    private void setDarkMode() {
         parent.getStylesheets().remove(0);
         parent.getStylesheets().add(Main.class.getResource("style/dark-main.css").toExternalForm());
         btnMode.setText("ON");
