@@ -19,7 +19,9 @@
     -fx-background-color: #dcdde1;
     -fx-background-radius: 8;
 }
-
+.glyph-icon:hover {
+    -fx-fill: #f5f6fa;
+}
 .list-view{
     -fx-background-color: white;
     -fx-border-color: #545454;

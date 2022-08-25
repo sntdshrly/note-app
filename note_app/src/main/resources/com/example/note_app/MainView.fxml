@@ -97,7 +97,7 @@
                         <Font name="Book Antiqua" size="12.0" />
                      </font>
                      <graphic>
-                        <FontAwesomeIconView glyphName="COMMENT" size="22" textAlignment="CENTER" />
+                        <FontAwesomeIconView glyphName="COMMENT" size="22" textAlignment="CENTER" translateX="1.0" translateY="-1.0" />
                      </graphic></Button>
                   <Button fx:id="btnShare" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="1029.0" layoutY="15.0" mnemonicParsing="false" onAction="#showShare" prefHeight="38.0" prefWidth="38.0">
                      <font>
