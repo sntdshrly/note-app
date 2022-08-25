@@ -74,18 +74,21 @@ public class LoginController {
     public void signIn(ActionEvent actionEvent) {
         if (checkForm()) {
             try {
+                /*
+                 * Hashing password
+                 * */
                 String enc_password = DigestUtils.sha1Hex((password.getText().trim()));
                 User user = userDao.fetchUser(username.getText(), enc_password);
                 Files.write(pathDefaultUser, gson.toJson(user).getBytes());
                 mainController.setLoggedUser(user);
                 username.getScene().getWindow().hide();
             } catch (NoResultException e) {
-                showAlert("Username or Password wrong!", Alert.AlertType.ERROR);
+                showAlert("Username or Password is incorrect!", Alert.AlertType.ERROR);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         } else {
-            showAlert("Please fill in blank space", Alert.AlertType.ERROR);
+            showAlert("Please fill in the blank space!", Alert.AlertType.ERROR);
         }
     }
 
@@ -113,16 +116,17 @@ public class LoginController {
     }
 
     private boolean isLightMode = true;
-    public void onActionMode(ActionEvent actionEvent){
+
+    public void onActionMode(ActionEvent actionEvent) {
         isLightMode = !isLightMode;
-        if(isLightMode){
+        if (isLightMode) {
             setLightMode();
-        }
-        else{
+        } else {
             setDarkMode();
         }
     }
-    private void setLightMode(){
+
+    private void setLightMode() {
         parent.getStylesheets().remove(0);
         parent.getStylesheets().add(Main.class.getResource("style/light.css").toExternalForm());
         btnMode.setText("OFF");
@@ -130,7 +134,8 @@ public class LoginController {
 //        Image image = new Image(String.valueOf(Main.class.getResource("img/dark.png")));
 //        imgMode.setImage(image);
     }
-    private void setDarkMode(){
+
+    private void setDarkMode() {
         parent.getStylesheets().remove(0);
         parent.getStylesheets().add(Main.class.getResource("style/dark.css").toExternalForm());
         btnMode.setText("ON");
