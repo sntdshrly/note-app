@@ -17,6 +17,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.persistence.NoResultException;
 import java.io.File;
@@ -73,7 +74,8 @@ public class LoginController {
     public void signIn(ActionEvent actionEvent) {
         if (checkForm()) {
             try {
-                User user = userDao.fetchUser(username.getText(), password.getText());
+                String enc_password = DigestUtils.sha1Hex((password.getText().trim()));
+                User user = userDao.fetchUser(username.getText(), enc_password);
                 Files.write(pathDefaultUser, gson.toJson(user).getBytes());
                 mainController.setLoggedUser(user);
                 username.getScene().getWindow().hide();

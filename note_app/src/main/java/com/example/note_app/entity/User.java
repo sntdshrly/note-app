@@ -1,6 +1,7 @@
 package com.example.note_app.entity;
 
 import com.google.gson.annotations.Expose;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.persistence.*;
 import java.util.HashSet;

@@ -8,6 +8,7 @@ module com.example.note_app {
     requires java.naming;
     requires com.google.gson;
     requires com.jfoenix;
+    requires org.apache.commons.codec;
 
 
     opens com.example.note_app to javafx.fxml, com.google.gson;
