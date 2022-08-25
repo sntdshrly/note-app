@@ -57,7 +57,7 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="81.0" prefWidth="1300.0" spacing="10.0">
                <children>
-                  <Label fx:id="labelUser" prefHeight="26.0" prefWidth="763.0" styleClass="white-text" text="User" HBox.hgrow="ALWAYS">
+                  <Label fx:id="labelUser" prefHeight="26.0" prefWidth="833.0" styleClass="white-text" text="User" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="Book Antiqua" size="18.0" />
                      </font>
@@ -78,7 +78,7 @@
                         <Font name="Book Antiqua" size="12.0" />
                      </font>
                      <graphic>
-                        <FontAwesomeIconView glyphName="SAVE" size="22" text="" textAlignment="CENTER" />
+                        <FontAwesomeIconView glyphName="SAVE" size="22" text="" textAlignment="CENTER" translateX="-2.0" />
                      </graphic>
                   </Button>
                   <Button fx:id="btnDelete" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onActionDeleteContent" prefHeight="38.0" prefWidth="38.0" HBox.hgrow="ALWAYS">
@@ -89,7 +89,7 @@
                         <Font name="Book Antiqua" size="12.0" />
                      </font>
                      <graphic>
-                        <FontAwesomeIconView glyphName="TRASH" size="22" textAlignment="CENTER" />
+                        <FontAwesomeIconView glyphName="TRASH" size="22" textAlignment="CENTER" translateX="-2.0" />
                      </graphic>
                   </Button>
                   <Button fx:id="btnComment" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="1029.0" layoutY="15.0" mnemonicParsing="false" onAction="#showComments" prefHeight="38.0" prefWidth="38.0">
@@ -104,7 +104,7 @@
                         <Font name="Book Antiqua" size="12.0" />
                      </font>
                      <graphic>
-                        <FontAwesomeIconView glyphName="SHARE_ALT" size="22" textAlignment="CENTER" />
+                        <FontAwesomeIconView glyphName="SHARE_ALT" size="22" textAlignment="CENTER" translateX="-2.0" />
                      </graphic></Button>
                </children>
                <padding>
