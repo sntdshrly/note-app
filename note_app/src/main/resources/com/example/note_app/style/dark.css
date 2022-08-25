@@ -39,3 +39,6 @@
 .text-color{
     -fx-text-fill: white;
 }
+.glyph-icon:hover {
+    -fx-fill: #f5f6fa;
+}
