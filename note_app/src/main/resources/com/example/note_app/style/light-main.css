@@ -19,7 +19,7 @@
     -fx-background-color: #dcdde1;
     -fx-background-radius: 8;
 }
-.glyph-icon:hover {
+.button:hover .glyph-icon {
     -fx-fill: #f5f6fa;
 }
 .list-view{

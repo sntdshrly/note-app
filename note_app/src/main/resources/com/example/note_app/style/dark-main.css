@@ -15,13 +15,14 @@
     -fx-background-radius: 8;
     -fx-text-fill: #f5f6fa;
 }
-.glyph-icon:hover {
+.button:hover .glyph-icon {
     -fx-fill: #f5f6fa;
 }
 .button {
     -fx-background-color: #0b497e;
     -fx-text-fill: white;
     -fx-background-radius: 8;
+    -fx-fill: #010221;
 }
 .list-view{
     -fx-background-color: #0b497e;
