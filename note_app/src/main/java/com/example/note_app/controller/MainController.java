@@ -34,6 +34,8 @@ import javafx.util.StringConverter;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
@@ -360,6 +362,19 @@ public class MainController implements Initializable {
 
     public User getLoggedUser() {
         return loggedUser;
+    }
+
+    public void logOut() throws IOException {
+        Files.deleteIfExists(Paths.get("data/user.json"));
+        labelUser.getScene().getWindow().hide();
+
+        Platform.runLater(() -> {
+            try {
+                new Main().start( new Stage() );
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     /**
