@@ -83,12 +83,29 @@ public class LoginController {
                 mainController.setLoggedUser(user);
                 username.getScene().getWindow().hide();
             } catch (NoResultException e) {
+                new animatefx.animation.Shake(username).play();
                 showAlert("Username or Password is incorrect!", Alert.AlertType.ERROR);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         } else {
-            showAlert("Please fill in the blank space!", Alert.AlertType.ERROR);
+            if (username.getText().trim()=="" && password.getText().trim()=="") {
+                new animatefx.animation.Shake(username).play();
+                new animatefx.animation.Shake(password).play();
+                username.setStyle("-fx-text-box-border: red;");
+                password.setStyle("-fx-text-box-border: red;");
+                showAlert("Please fill username and password field!", Alert.AlertType.ERROR);
+            }
+            else if(username.getText().trim()==""){
+                new animatefx.animation.Shake(username).play();
+                username.setStyle("-fx-text-box-border: red;");
+                showAlert("Please fill username field!", Alert.AlertType.ERROR);
+            }
+            else if(password.getText().trim()==""){
+                new animatefx.animation.Shake(password).play();
+                password.setStyle("-fx-text-box-border: red;");
+                showAlert("Please fill password field!", Alert.AlertType.ERROR);
+            }
         }
     }
 
