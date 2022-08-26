@@ -433,4 +433,15 @@ public class MainController implements Initializable {
         btnMode.setTextFill(Color.WHITE);
     }
 
+    /**
+    * About method
+    */
+    public void onActionAbout(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("MainView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        stage.setTitle("About Us");
+        stage.setScene(scene);
+        stage.show();
+    }
 }
