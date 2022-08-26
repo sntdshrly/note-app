@@ -1,5 +1,5 @@
 .backgroundColor{
-    -fx-background-color: linear-gradient(to bottom,#80FFDB, #5390D9);
+    -fx-background-color: white;
 }
 .hyperlink {
     -fx-border-color: transparent;
