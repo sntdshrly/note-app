@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="parent" prefHeight="549.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.note_app.controller.MainController">
+<AnchorPane fx:id="parent" prefHeight="549.0" prefWidth="670.0" stylesheets="@style/about.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.note_app.controller.MainController">
    <children>
       <VBox prefHeight="549.0" prefWidth="670.0">
          <children>
@@ -98,19 +98,19 @@
                               <Insets left="10.0" />
                            </padding>
                            <children>
-                              <ImageView fitHeight="51.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="49.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../../../../../../Documents/Downloads/b2c6791b005bc77acc7d6326407952ec.jpg" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="51.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../../../../../../../Documents/Downloads/2581cd6d6b8c0f9d133a8a4c360240c8.jpg" />
+                                    <Image url="@img/contoh.jpg" />
                                  </image>
                               </ImageView>
                               <ImageView fitHeight="49.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../../../../../../Documents/Downloads/746236d8dad4909d01d2bc086e22e921.jpg" />
+                                    <Image url="@img/contoh.jpg" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="49.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@img/contoh.jpg" />
                                  </image>
                               </ImageView>
                            </children>
@@ -174,7 +174,7 @@
                                        <children>
                                           <ImageView fitHeight="23.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../../../../../../../Documents/Downloads/icons8-instagram-96.png" />
+                                                <Image url="@img/foto1.png" />
                                              </image>
                                              <HBox.margin>
                                                 <Insets right="5.0" />
@@ -182,7 +182,7 @@
                                           </ImageView>
                                           <ImageView fitHeight="23.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../../../../../../../Documents/Downloads/icons8-twitter-90.png" />
+                                                <Image url="@img/foto2.png" />
                                              </image>
                                              <HBox.margin>
                                                 <Insets right="5.0" />
@@ -190,7 +190,7 @@
                                           </ImageView>
                                           <ImageView fitHeight="23.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../../../../../../../Documents/Downloads/icons8-facebook-90.png" />
+                                                <Image url="@img/foto3.png" />
                                              </image>
                                              <HBox.margin>
                                                 <Insets right="5.0" />
@@ -198,7 +198,7 @@
                                           </ImageView>
                                           <ImageView fitHeight="23.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../../../../../../../Documents/Downloads/icons8-phone-90.png" />
+                                                <Image url="@img/foto4.png" />
                                              </image>
                                           </ImageView>
                                        </children>
