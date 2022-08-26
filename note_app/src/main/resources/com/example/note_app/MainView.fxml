@@ -29,7 +29,7 @@
                   <items>
                         <MenuItem mnemonicParsing="false" onAction="#logOut" text="Log Out">
                            <accelerator>
-                              <KeyCodeCombination alt="UP" code="X" control="ANY" meta="UP" shift="UP" shortcut="UP" />
+                              <KeyCodeCombination alt="UP" code="DOWN" control="ANY" meta="UP" shift="UP" shortcut="UP" />
                            </accelerator></MenuItem>
                   </items>
                 </Menu>

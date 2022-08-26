@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -10,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="parent" prefHeight="328.0" prefWidth="670.0" style="-fx-background-color: #010221;" stylesheets="@style/about.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="parent" prefHeight="328.0" prefWidth="670.0" style="-fx-background-color: #010221;" stylesheets="@style/about.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.note_app.controller.AboutMeController">
    <children>
       <VBox prefHeight="481.0" prefWidth="670.0">
          <children>
@@ -19,7 +20,7 @@
                   <Font name="Bodoni MT" size="24.0" />
                </font>
                <VBox.margin>
-                  <Insets left="10.0" />
+                  <Insets left="13.0" />
                </VBox.margin>
             </Label>
             <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="318.0" prefWidth="670.0" styleClass="backgroundColor">
@@ -29,12 +30,12 @@
                         <Font name="Bodoni MT Bold" size="24.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="20.0" />
+                        <Insets top="23.0" />
                      </VBox.margin>
                   </Label>
                   <Text fill="#010221" strokeType="OUTSIDE" strokeWidth="0.0" text="Take notes anywhere. Find information faster. Share ideas with anyone. Meeting notes, web pages, projects, to-do lists - with NoteApp as your note taking app, nothing falls through the cracks." textAlignment="JUSTIFY" wrappingWidth="500.0">
                      <VBox.margin>
-                        <Insets left="100.0" />
+                        <Insets left="100.0" top="15.0" />
                      </VBox.margin>
                      <font>
                         <Font name="Book Antiqua" size="16.0" />
@@ -49,11 +50,17 @@
                            <image>
                               <Image url="@img/sherly.png" />
                            </image>
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
                         </ImageView>
                         <ImageView fitHeight="69.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@img/arya.png" />
                            </image>
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
                         </ImageView>
                         <ImageView fitHeight="69.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -62,7 +69,7 @@
                         </ImageView>
                      </children>
                      <VBox.margin>
-                        <Insets top="25.0" />
+                        <Insets top="20.0" />
                      </VBox.margin>
                   </HBox>
                </children>
@@ -125,36 +132,46 @@
                                  <children>
                                     <HBox prefHeight="55.0" prefWidth="189.0">
                                        <children>
-                                          <ImageView fitHeight="23.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@img/foto1.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="5.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="23.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@img/foto2.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="5.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="23.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@img/foto3.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="5.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="23.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@img/foto4.png" />
-                                             </image>
-                                          </ImageView>
+                                          <Hyperlink fx:id="hyperlinkFacebook">
+                                             <graphic>
+                                                <ImageView fitHeight="23.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@img/foto1.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Hyperlink>
+                                          <Hyperlink fx:id="hyperlinkInstagram">
+                                             <graphic>
+                                                <ImageView fitHeight="23.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@img/foto2.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Hyperlink>
+                                          <Hyperlink fx:id="hyperlinkWhatsapp">
+                                             <graphic>
+                                                <ImageView fitHeight="23.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@img/foto3.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Hyperlink>
+                                          <Hyperlink fx:id="hyperlinkTwitter">
+                                             <graphic>
+                                                <ImageView fitHeight="23.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@img/foto4.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Hyperlink>
                                        </children>
+                                       <VBox.margin>
+                                          <Insets top="-10.0" />
+                                       </VBox.margin>
                                     </HBox>
                                  </children>
                               </VBox>
