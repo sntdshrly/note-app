@@ -1,7 +1,8 @@
 .backgroundColor{
-    -fx-background-color: linear-gradient(to right,#22c1c3, #fdbb2d);
+    -fx-background-color: linear-gradient(to bottom,#80FFDB, #5390D9);
 }
+.separator *.line {
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
 
-.backgroundColor2{
-    -fx-background-color: linear-gradient(to right,#fdbb2d, #22c1c3);
 }

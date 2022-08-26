@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXHamburger?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,116 +10,70 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="parent" prefHeight="549.0" prefWidth="670.0" stylesheets="@style/about.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="parent" prefHeight="328.0" prefWidth="670.0" style="-fx-background-color: #010221;" stylesheets="@style/about.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox prefHeight="549.0" prefWidth="670.0">
+      <VBox prefHeight="481.0" prefWidth="670.0">
          <children>
-            <HBox prefHeight="163.0" prefWidth="670.0" styleClass="backgroundColor">
+            <Label prefHeight="53.0" prefWidth="560.0" text="Note Application" textFill="WHITE">
+               <font>
+                  <Font name="Bodoni MT" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </Label>
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="318.0" prefWidth="670.0" styleClass="backgroundColor">
                <children>
-                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="121.0" prefWidth="669.0">
+                  <Label alignment="CENTER" prefHeight="53.0" prefWidth="668.0" text="About Us" textFill="#010221">
+                     <font>
+                        <Font name="Bodoni MT Bold" size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Text fill="#010221" strokeType="OUTSIDE" strokeWidth="0.0" text="Take notes anywhere. Find information faster. Share ideas with anyone. Meeting notes, web pages, projects, to-do lists - with NoteApp as your note taking app, nothing falls through the cracks." textAlignment="JUSTIFY" wrappingWidth="500.0">
+                     <VBox.margin>
+                        <Insets left="100.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Book Antiqua" size="16.0" />
+                     </font>
+                  </Text>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="125.0" prefWidth="670.0">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
                      <children>
-                        <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="55.0" prefWidth="660.0">
-                           <children>
-                              <Label prefHeight="53.0" prefWidth="560.0" text="Note Application">
-                                 <font>
-                                    <Font name="Gloucester MT Extra Condensed" size="24.0" />
-                                 </font>
-                              </Label>
-                              <Label prefHeight="50.0" prefWidth="44.0" text="MENU">
-                                 <font>
-                                    <Font name="Articulate Bold" size="14.0" />
-                                 </font>
-                              </Label>
-                              <JFXHamburger fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="35.0" />
-                           </children>
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                        </HBox>
-                        <Label alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="66.0" prefWidth="669.0" text="&quot;THE BEST NOTE APPS FOR SOLO USER OR A TEAM&quot;" textAlignment="CENTER" textFill="#efea98">
-                           <font>
-                              <Font name="Franklin Gothic Book Italic" size="18.0" />
-                           </font>
-                        </Label>
+                        <ImageView fitHeight="69.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/sherly.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="69.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/arya.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="69.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/nisa.png" />
+                           </image>
+                        </ImageView>
                      </children>
-                  </VBox>
+                     <VBox.margin>
+                        <Insets top="25.0" />
+                     </VBox.margin>
+                  </HBox>
                </children>
                <VBox.margin>
-                  <Insets />
+                  <Insets top="10.0" />
                </VBox.margin>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </HBox>
-            <HBox prefHeight="149.0" prefWidth="648.0" style="-fx-background-color: #EFEA98;">
+            </VBox>
+            <HBox prefHeight="109.0" prefWidth="670.0" style="-fx-background-color: #17202A;">
                <children>
-                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="149.0" prefWidth="645.0">
+                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="147.0" prefWidth="671.0">
                      <children>
-                        <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="55.0" prefWidth="680.0">
-                           <children>
-                              <Label alignment="CENTER" prefHeight="53.0" prefWidth="668.0" text="About Us">
-                                 <font>
-                                    <Font name="Gloucester MT Extra Condensed" size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                        </HBox>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laboru" wrappingWidth="666.3261413574219">
-                           <VBox.margin>
-                              <Insets left="10.0" right="10.0" />
-                           </VBox.margin>
-                        </Text>
-                     </children>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </VBox>
-               </children>
-            </HBox>
-            <HBox prefHeight="146.0" prefWidth="687.0" style="-fx-background-color: #ECF0F1;">
-               <children>
-                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="147.0" prefWidth="687.0">
-                     <children>
-                        <Separator prefHeight="7.0" prefWidth="687.0" />
-                        <Label alignment="CENTER" prefHeight="53.0" prefWidth="689.0" text="Meet The Team">
-                           <font>
-                              <Font name="Gloucester MT Extra Condensed" size="24.0" />
-                           </font>
-                        </Label>
-                        <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="46.0" prefWidth="687.0">
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                           <children>
-                              <ImageView fitHeight="49.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@img/contoh.jpg" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="49.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@img/contoh.jpg" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="49.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@img/contoh.jpg" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
-            <HBox prefHeight="109.0" prefWidth="687.0" style="-fx-background-color: #17202A;">
-               <children>
-                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="147.0" prefWidth="687.0">
-                     <children>
-                        <Separator prefHeight="15.0" prefWidth="687.0" />
                         <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="57.0" prefWidth="687.0">
                            <padding>
                               <Insets left="10.0" top="20.0" />
@@ -145,7 +95,7 @@
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                              <Label text="SUBSCRIBE TO OUR NEWSLETTER" textFill="#fdfcfc">
+                              <Label text="CONTACT US" textFill="#fdfcfc">
                                  <HBox.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </HBox.margin>
@@ -154,8 +104,11 @@
                                  </font>
                               </Label>
                            </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
                         </HBox>
-                        <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="55.0" prefWidth="687.0">
+                        <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="42.0" prefWidth="687.0">
                            <children>
                               <VBox prefHeight="55.0" prefWidth="221.0">
                                  <padding>
@@ -165,7 +118,7 @@
                                     <Label prefHeight="17.0" prefWidth="98.0" text="ABOUT US" textFill="#f8f7f7" />
                                  </children>
                               </VBox>
-                              <VBox prefHeight="55.0" prefWidth="211.0">
+                              <VBox prefHeight="53.0" prefWidth="211.0">
                                  <padding>
                                     <Insets left="20.0" />
                                  </padding>
@@ -205,11 +158,13 @@
                                     </HBox>
                                  </children>
                               </VBox>
-                              <TextField centerShape="false" prefHeight="25.0" prefWidth="147.0" text="Enter Your Email" />
-                              <JFXButton style="-fx-background-color: #F2F3F4;" text="Subscribe" textFill="#1b1a1a" />
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Jl. Surya Sumantri No.65, Bandung" />
                            </children>
                         </HBox>
                      </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
                   </VBox>
                </children>
             </HBox>
