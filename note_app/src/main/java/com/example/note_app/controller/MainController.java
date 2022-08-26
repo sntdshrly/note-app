@@ -437,7 +437,7 @@ public class MainController implements Initializable {
     * About method
     */
     public void onActionAbout(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("MainView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("AboutMeView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
         stage.setTitle("About Us");
