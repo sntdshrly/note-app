@@ -390,8 +390,19 @@ public class MainController implements Initializable {
     /**
      * Collaborator method
      */
-    public void showShare() {
+    public void showShare() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("CollaboratorView.fxml"));
 
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        stage.setTitle("Share");
+        stage.setScene(scene);
+
+        CollaboratorController collaboratorController = fxmlLoader.getController();
+        collaboratorController.setMainController(this);
+        collaboratorController.setUsers(selectedContent);
+
+        stage.show();
     }
 
     /**

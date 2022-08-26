@@ -125,4 +125,18 @@ public class CategoryDaoImpl implements DaoService<Category> {
         session.close();
         return loginUser;
     }
+
+    public void addData(UserCategory userCategory) {
+        Session session = HibernateUtility.getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+            session.save(userCategory);
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+        }
+
+        session.close();
+    }
 }

@@ -2,6 +2,7 @@ package com.example.note_app.dao;
 
 import com.example.note_app.entity.User;
 import com.example.note_app.entity.User;
+import com.example.note_app.entity.relationship.Collaborator;
 import com.example.note_app.util.DaoService;
 import com.example.note_app.util.HibernateUtility;
 import com.example.note_app.util.MySQLConnection;
@@ -109,5 +110,37 @@ public class UserDaoImpl implements DaoService<User> {
 
         session.close();
         return loginUser;
+    }
+
+    public void addCollaborator(Collaborator collaborator) {
+        Session session = HibernateUtility.getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+            session.save(collaborator);
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+        }
+
+        session.close();
+    }
+
+    public User fetchUser(String user) {
+        Session session = HibernateUtility.getSession();
+
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<User> query = builder.createQuery(User.class);
+        Root<User> root = query.from(User.class);
+
+        Predicate usernameCheck = builder.equal(root.get("username"), user);
+        Predicate emailCheck = builder.equal(root.get("email"), user);
+        Predicate predicate = builder.or(usernameCheck, emailCheck);
+        query.where(predicate);
+
+        User fetchedUser = session.createQuery(query).getSingleResult();
+
+        session.close();
+        return fetchedUser;
     }
 }
