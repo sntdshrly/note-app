@@ -109,16 +109,6 @@ public class MainController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        /**
-         * Setting cursor
-         */
-        btnSave.setCursor(Cursor.HAND);
-        btnDelete.setCursor(Cursor.HAND);
-        btnComment.setCursor(Cursor.HAND);
-        btnShare.setCursor(Cursor.HAND);
-        btnAddCategory.setCursor(Cursor.HAND);
-        btnAddNote.setCursor(Cursor.HAND);
-
         showLogin();
 
         // User

@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXToggleButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -78,6 +79,9 @@
                      <graphic>
                         <FontAwesomeIconView glyphName="SAVE" size="22" text="" textAlignment="CENTER" translateX="-2.0" />
                      </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Button fx:id="btnDelete" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onActionDeleteContent" prefHeight="38.0" prefWidth="38.0" HBox.hgrow="ALWAYS">
                      <HBox.margin>
@@ -89,6 +93,9 @@
                      <graphic>
                         <FontAwesomeIconView glyphName="TRASH" size="22" textAlignment="CENTER" translateX="-2.0" />
                      </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Button fx:id="btnComment" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="1029.0" layoutY="15.0" mnemonicParsing="false" onAction="#showComments" prefHeight="38.0" prefWidth="38.0">
                      <font>
@@ -96,14 +103,20 @@
                      </font>
                      <graphic>
                         <FontAwesomeIconView glyphName="COMMENT" size="22" textAlignment="CENTER" translateX="1.0" translateY="-1.0" />
-                     </graphic></Button>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
                   <Button fx:id="btnShare" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="1029.0" layoutY="15.0" mnemonicParsing="false" onAction="#showShare" prefHeight="38.0" prefWidth="38.0">
                      <font>
                         <Font name="Book Antiqua" size="12.0" />
                      </font>
                      <graphic>
                         <FontAwesomeIconView glyphName="SHARE_ALT" size="22" textAlignment="CENTER" translateX="-2.0" />
-                     </graphic></Button>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="10.0" top="20.0" />
@@ -126,7 +139,10 @@
                                        </font>
                                        <VBox.margin>
                                           <Insets bottom="15.0" />
-                                       </VBox.margin></Button>
+                                       </VBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor></Button>
                                     <ListView fx:id="listCategory" editable="true" onEditCommit="#editCommit" prefHeight="500.0" prefWidth="130.0" VBox.vgrow="ALWAYS" />
                                  </children>
                                  <padding>
@@ -141,7 +157,10 @@
                                        </font>
                                        <VBox.margin>
                                           <Insets bottom="15.0" />
-                                       </VBox.margin></Button>
+                                       </VBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor></Button>
                                     <ListView fx:id="listContent" onMouseClicked="#contentClicked" prefHeight="370.0" prefWidth="130.0" VBox.vgrow="ALWAYS" />
                                  </children>
                                  <padding>
