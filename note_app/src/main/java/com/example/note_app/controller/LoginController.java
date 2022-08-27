@@ -14,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -192,5 +193,14 @@ public class LoginController {
         password.setText(pass_text.getText());
         password.setVisible(true);
         pass_text.setVisible(false);
+    }
+
+    @FXML
+    public void onClickedUsername(MouseEvent mouseEvent) {
+        username.setStyle("-fx-text-box-border: #d9d9d9;");
+    }
+    @FXML
+    public void onClickedPassword(MouseEvent mouseEvent) {
+        password.setStyle("-fx-text-box-border: #d9d9d9;");
     }
 }
