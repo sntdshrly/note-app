@@ -46,6 +46,10 @@ public class LoginController {
     private TextField username;
     @FXML
     private PasswordField password;
+    @FXML
+    private Label lblUsername;
+    @FXML
+    private Label lblPassword;
 
     private UserDaoImpl userDao;
     private MainController mainController;
@@ -95,16 +99,20 @@ public class LoginController {
                 new animatefx.animation.Shake(password).play();
                 username.setStyle("-fx-text-box-border: red;");
                 password.setStyle("-fx-text-box-border: red;");
+                lblUsername.setText("Please fill username field!");
+                lblPassword.setText("Please fill password field!");
                 showAlert("Please fill username and password field!", Alert.AlertType.ERROR);
             }
             else if(username.getText().trim()==""){
                 new animatefx.animation.Shake(username).play();
                 username.setStyle("-fx-text-box-border: red;");
+                lblUsername.setText("Please fill username field!");
                 showAlert("Please fill username field!", Alert.AlertType.ERROR);
             }
             else if(password.getText().trim()==""){
                 new animatefx.animation.Shake(password).play();
                 password.setStyle("-fx-text-box-border: red;");
+                lblPassword.setText("Please fill password field!");
                 showAlert("Please fill password field!", Alert.AlertType.ERROR);
             }
         }
@@ -198,9 +206,11 @@ public class LoginController {
     @FXML
     public void onClickedUsername(MouseEvent mouseEvent) {
         username.setStyle("-fx-text-box-border: #d9d9d9;");
+        lblUsername.setText("");
     }
     @FXML
     public void onClickedPassword(MouseEvent mouseEvent) {
         password.setStyle("-fx-text-box-border: #d9d9d9;");
+        lblPassword.setText("");
     }
 }
