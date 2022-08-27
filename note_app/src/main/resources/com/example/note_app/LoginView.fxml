@@ -46,11 +46,6 @@
                      <font>
                         <Font name="Book Antiqua" size="12.0" />
                      </font></Button>
-                  <Label fx:id="lblForgotPass" alignment="CENTER" layoutX="7.0" layoutY="98.0" prefHeight="23.0" prefWidth="107.0" text="Forgot Password?" textFill="#5383ff">
-                     <font>
-                        <Font name="Book Antiqua" size="12.0" />
-                     </font>
-                  </Label>
                   <Button fx:id="btnSignUp" layoutX="4.0" layoutY="235.0" mnemonicParsing="false" onAction="#signUp" prefHeight="23.0" prefWidth="275.0" styleClass="primary-button" text="SIGN UP" textFill="WHITE">
                      <font>
                         <Font name="Book Antiqua Italic" size="12.0" />

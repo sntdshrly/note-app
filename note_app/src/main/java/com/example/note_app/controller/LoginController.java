@@ -33,8 +33,6 @@ public class LoginController {
     @FXML
     private CheckBox pass_toggle;
     @FXML
-    private Label lblForgotPass;
-    @FXML
     private Button btnSignIn;
     @FXML
     private Button btnSignUp;
