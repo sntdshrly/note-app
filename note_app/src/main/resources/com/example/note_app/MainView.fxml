@@ -29,7 +29,7 @@
                   <items>
                         <MenuItem mnemonicParsing="false" onAction="#logOut" text="Log Out">
                            <accelerator>
-                              <KeyCodeCombination alt="UP" code="DOWN" control="ANY" meta="UP" shift="UP" shortcut="UP" />
+                              <KeyCodeCombination alt="UP" code="DOWN" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                            </accelerator></MenuItem>
                   </items>
                 </Menu>
@@ -37,7 +37,7 @@
                   <items>
                     <MenuItem mnemonicParsing="false" onAction="#onActionAbout" text="About">
                            <accelerator>
-                              <KeyCodeCombination alt="UP" code="A" control="ANY" meta="UP" shift="UP" shortcut="UP" />
+                              <KeyCodeCombination alt="UP" code="A" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                            </accelerator></MenuItem>
                   </items>
                 </Menu>
