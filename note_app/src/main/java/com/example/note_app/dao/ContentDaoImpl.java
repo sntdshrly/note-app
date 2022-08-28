@@ -160,7 +160,7 @@ public class ContentDaoImpl implements DaoService<Content> {
         return contents;
     }
 
-    private Collaborator fetchCollaborator(Content content, User user) {
+    public Collaborator fetchCollaborator(Content content, User user) {
         Session session = HibernateUtility.getSession();
 
         CriteriaBuilder builder = session.getCriteriaBuilder();

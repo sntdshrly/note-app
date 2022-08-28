@@ -143,4 +143,19 @@ public class UserDaoImpl implements DaoService<User> {
         session.close();
         return fetchedUser;
     }
+
+    public void deleteCollaborator(Collaborator collaborator) {
+        Session session = HibernateUtility.getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+            System.out.println(collaborator);
+            session.delete(collaborator);
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+        }
+
+        session.close();
+    }
 }

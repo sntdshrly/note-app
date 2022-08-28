@@ -11,7 +11,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 
 import javax.persistence.NoResultException;
@@ -38,6 +40,18 @@ public class CollaboratorController implements Initializable {
 
         userDao = new UserDaoImpl();
         categoryDao = new CategoryDaoImpl();
+        contentDao = new ContentDaoImpl();
+
+        ContextMenu deleteMenu = new ContextMenu();
+        MenuItem delete = new MenuItem("Delete User");
+        deleteMenu.getItems().add(delete);
+        delete.setOnAction(actionEvent -> {
+                Collaborator deleteCollaborator = contentDao.fetchCollaborator(mainController.getSelectedContent(), listUser.getSelectionModel().getSelectedItem());
+                userDao.deleteCollaborator(deleteCollaborator);
+                setUsers(mainController.getSelectedContent());
+            }
+        );
+        listUser.setContextMenu(deleteMenu);
     }
 
     public void addUser(ActionEvent actionEvent) {
