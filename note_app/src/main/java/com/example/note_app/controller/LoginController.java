@@ -17,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -33,13 +34,21 @@ public class LoginController {
     @FXML
     private TextField pass_text;
     @FXML
+    private TextField newPass_text;
+    @FXML
     private CheckBox pass_toggle;
+    @FXML
+    private CheckBox newPass_toggle;
     @FXML
     private Button btnSignIn;
     @FXML
     private Button btnSignUp;
     @FXML
+    private Button btnSignIn2;
+    @FXML
     private JFXToggleButton btnMode;
+    @FXML
+    private JFXToggleButton newBtnMode;
     @FXML
     private AnchorPane parent;
     @FXML
@@ -47,9 +56,25 @@ public class LoginController {
     @FXML
     private PasswordField password;
     @FXML
+    private TextField newUsername;
+    @FXML
+    private TextField newEmail;
+    @FXML
+    private PasswordField newPassword;
+    @FXML
     private Label lblUsername;
     @FXML
     private Label lblPassword;
+    @FXML
+    private Label newLblUsername;
+    @FXML
+    private Label newLblEmail;
+    @FXML
+    private Label newLblPassword;
+    @FXML
+    private BorderPane loginView;
+    @FXML
+    private BorderPane signUpView;
 
     private UserDaoImpl userDao;
     private MainController mainController;
@@ -116,21 +141,58 @@ public class LoginController {
             }
         }
     }
+    public void registerNewUser(ActionEvent actionEvent) throws NoResultException {
+        User user = new User();
+        user.setUsername(newUsername.getText());
+        /*
+        * Hashing password
+        * */
+        String enc_password = DigestUtils.sha1Hex((newPassword.getText().trim()));
+        user.setPassword(enc_password);
+        user.setEmail(newEmail.getText());
+//        userDao.addData(user);
+//        username.getScene().getWindow().hide();
+        if (!newUsername.getText().isBlank() && !newPassword.getText().isBlank() && !newEmail.getText().isBlank()) {
+            try {
+                userDao.addData(user);
+                username.getScene().getWindow().hide();
+                user = userDao.fetchUser(newUsername.getText(), enc_password);
+                Files.write(pathDefaultUser, gson.toJson(user).getBytes());
+                mainController.setLoggedUser(user);
+                newUsername.getScene().getWindow().hide();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        else if (newUsername.getText().isBlank() || newPassword.getText().isBlank() || newEmail.getText().isBlank()) {
+            if(newUsername.getText().isBlank()){
+                new animatefx.animation.Shake(newUsername).play();
+                newLblUsername.setText("Please fill username field!");
+                newUsername.setStyle("-fx-text-box-border: red;");
+            }
+            if(newPassword.getText().isBlank()){
+                new animatefx.animation.Shake(newPassword).play();
+                newLblPassword.setText("Please fill password field!");
+                newPassword.setStyle("-fx-text-box-border: red;");
+            }
+            if(newEmail.getText().isBlank()){
+                new animatefx.animation.Shake(newEmail).play();
+                newLblEmail.setText("Please fill email field!");
+                newEmail.setStyle("-fx-text-box-border: red;");
+            }
+            showAlert("Please fill all the field!", Alert.AlertType.ERROR);
+        }
+    }
 
     public void signUp(ActionEvent actionEvent) throws IOException {
-//        User user = new User();
-//        user.setUsername(username.getText());
-//        user.setPassword(password.getText());
-//        userDao.addData(user);
-//        showAlert("Login Successfully", Alert.AlertType.INFORMATION);
-//        username.getScene().getWindow().hide();
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("SignUpView.fxml"));
-
-        Scene scene = new Scene(fxmlLoader.load());
-        Stage stage = new Stage();
-        stage.setTitle("Sign Up");
-        stage.setScene(scene);
-        stage.show();
+        if(actionEvent.getSource() == btnSignUp){
+            signUpView.setVisible(true);
+            loginView.setVisible(false);
+        }
+        if(actionEvent.getSource() == btnSignIn2) {
+            signUpView.setVisible(false);
+            loginView.setVisible(true);
+        }
     }
 
     private boolean checkForm() {
@@ -163,6 +225,8 @@ public class LoginController {
         parent.getStylesheets().add(Main.class.getResource("style/light.css").toExternalForm());
         btnMode.setText("DAY");
         btnMode.setTextFill(Color.BLACK);
+        newBtnMode.setText("DAY");
+        newBtnMode.setTextFill(Color.BLACK);
 //        Image image = new Image(String.valueOf(Main.class.getResource("img/dark.png")));
 //        imgMode.setImage(image);
     }
@@ -172,6 +236,8 @@ public class LoginController {
         parent.getStylesheets().add(Main.class.getResource("style/dark.css").toExternalForm());
         btnMode.setText("NIGHT");
         btnMode.setTextFill(Color.WHITE);
+        newBtnMode.setText("NIGHT");
+        newBtnMode.setTextFill(Color.WHITE);
     }
 
     public boolean checkLoginInfo() {
@@ -198,6 +264,9 @@ public class LoginController {
 
     @FXML
     public void onActionToggleVisible(ActionEvent event) {
+        /*
+         * For Login Pages
+         * */
         if (pass_toggle.isSelected()) {
             pass_text.setText(password.getText());
             pass_text.setVisible(true);
@@ -207,6 +276,21 @@ public class LoginController {
         password.setText(pass_text.getText());
         password.setVisible(true);
         pass_text.setVisible(false);
+    }
+    @FXML
+    public void onActionToggle2Visible(ActionEvent event) {
+        /*
+         * For Sign Up Pages
+         * */
+        if (newPass_toggle.isSelected()) {
+            newPass_text.setText(newPassword.getText());
+            newPass_text.setVisible(true);
+            newPassword.setVisible(false);
+            return;
+        }
+        newPassword.setText(newPass_text.getText());
+        newPassword.setVisible(true);
+        newPass_text.setVisible(false);
     }
 
     @FXML
@@ -218,5 +302,20 @@ public class LoginController {
     public void onClickedPassword(MouseEvent mouseEvent) {
         password.setStyle("-fx-text-box-border: #d9d9d9;");
         lblPassword.setText("");
+    }
+
+    public void onClickedNewUsername(MouseEvent mouseEvent) {
+        newUsername.setStyle("-fx-text-box-border: #d9d9d9;");
+        newLblUsername.setText("");
+    }
+
+    public void onClickedNewPassword(MouseEvent mouseEvent) {
+        newPassword.setStyle("-fx-text-box-border: #d9d9d9;");
+        newLblPassword.setText("");
+    }
+
+    public void onClickedNewEmail(MouseEvent mouseEvent) {
+        newEmail.setStyle("-fx-text-box-border: #d9d9d9;");
+        newLblEmail.setText("");
     }
 }

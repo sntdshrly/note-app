@@ -27,7 +27,7 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                        <MenuItem mnemonicParsing="false" onAction="#logOut" text="Log Out">
+                        <MenuItem mnemonicParsing="false" onAction="#logOut" text="Sign Out">
                            <accelerator>
                               <KeyCodeCombination alt="UP" code="DOWN" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                            </accelerator></MenuItem>
