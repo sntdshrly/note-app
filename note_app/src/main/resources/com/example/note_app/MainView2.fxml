@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXToggleButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -148,7 +149,11 @@
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor></Button>
-                                    <ListView fx:id="listCategory" editable="true" onEditCommit="#editCommit" prefHeight="300.0" prefWidth="170.0" VBox.vgrow="ALWAYS" />
+                                    <ListView fx:id="listCategory" editable="true" onEditCommit="#editCommit" prefHeight="300.0" prefWidth="170.0" VBox.vgrow="ALWAYS">
+                                       <styleClass>
+                                          <String fx:value="list-view-custom" />
+                                          <String fx:value="list-cell-custom" />
+                                       </styleClass></ListView>
                                     <Button fx:id="btnAddNote" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#newNote" prefHeight="38.0" prefWidth="179.0" styleClass="custom-button" text="ADD NEW NOTE" textAlignment="CENTER">
                                        <font>
                                           <Font name="Book Antiqua" size="13.0" />
@@ -159,7 +164,11 @@
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor></Button>
-                                    <ListView fx:id="listContent" onMouseClicked="#contentClicked" prefHeight="300.0" prefWidth="170.0" VBox.vgrow="ALWAYS" />
+                                    <ListView fx:id="listContent" onMouseClicked="#contentClicked" prefHeight="300.0" prefWidth="170.0" VBox.vgrow="ALWAYS">
+                                       <styleClass>
+                                          <String fx:value="list-view-custom" />
+                                          <String fx:value="list-cell-custom" />
+                                       </styleClass></ListView>
                                  </children>
                                  <padding>
                                     <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />

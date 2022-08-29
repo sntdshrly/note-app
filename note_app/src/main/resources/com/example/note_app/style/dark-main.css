@@ -32,17 +32,25 @@
 .custom-button .glyph-icon{
     -fx-fill: #fffafa;
 }
-.list-view{
+.list-view-custom{
     -fx-background-color: #0b497e;
     -fx-text-fill: white;
     -fx-background-radius: 8;
 }
-.list-cell{
+#listCategory .list-cell{
     -fx-background-color: #0b497e;
     -fx-text-fill: white;
     -fx-background-radius: 8;
 }
-.list-cell:selected {
+#listCategory .list-cell:selected {
+    -fx-background-color: #0b0864;
+}
+#listContent .list-cell{
+    -fx-background-color: #0b497e;
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+}
+#listContent .list-cell:selected {
     -fx-background-color: #0b0864;
 }
 .white-text{

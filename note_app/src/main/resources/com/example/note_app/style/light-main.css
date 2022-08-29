@@ -29,20 +29,29 @@
 .custom-button:hover .glyph-icon {
     -fx-fill: #fffafa;
 }
-.list-view{
+.list-view-custom{
     -fx-background-color: #fffafa;
     -fx-border-color: #010221;
     -fx-text-fill: #010221;
     -fx-background-radius: 8;
     -fx-border-radius: 8;
 }
-.list-cell{
+#listCategory .list-cell{
     -fx-background-color: #fffafa;
     -fx-text-fill: #010221;
     -fx-background-radius: 8;
     -fx-border-radius: 8;
 }
-.list-cell:selected {
+#listCategory .list-cell:selected {
+    -fx-background-color: #DFDEEF;
+}
+#listContent .list-cell{
+    -fx-background-color: #fffafa;
+    -fx-text-fill: #010221;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+}
+#listContent .list-cell:selected {
     -fx-background-color: #DFDEEF;
 }
 
