@@ -129,12 +129,11 @@ public class MainController implements Initializable {
         contents = FXCollections.observableArrayList();
         refreshContent();
         initContent();
-
     }
 
     private void reset() {
         txtTitle.clear();
-//        txtArea.clear();
+        txtArea.setHtmlText("");
         btnSave.setDisable(false);
         btnUpdate.setDisable(true);
         btnDelete.setDisable(true);

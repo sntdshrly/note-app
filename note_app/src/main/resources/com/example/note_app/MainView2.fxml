@@ -128,16 +128,16 @@
                   <Insets bottom="5.0" left="5.0" right="10.0" />
                </padding>
                <VBox.margin>
-                  <Insets bottom="5.0" top="-10.0" />
+                  <Insets bottom="-15.0" top="-10.0" />
                </VBox.margin>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
                 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="612.0" prefWidth="191.0">
                      <children>
-                        <HBox prefHeight="623.0" prefWidth="201.0" AnchorPane.bottomAnchor="-11.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="145.0" AnchorPane.topAnchor="0.0">
+                        <HBox prefHeight="643.0" prefWidth="201.0" AnchorPane.bottomAnchor="-31.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="145.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="200.0" spacing="5.0">
+                              <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="641.0" prefWidth="200.0" spacing="5.0">
                                  <children>
                                     <Button fx:id="btnAddCategory" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#newCategory" prefHeight="37.0" prefWidth="170.0" styleClass="custom-button" text="ADD NEW CATEGORY" textAlignment="CENTER">
                                        <font>
@@ -183,7 +183,7 @@
                   </AnchorPane>
                 <AnchorPane maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="564.0" prefWidth="954.0">
                      <children>
-                        <VBox layoutX="-148.0" layoutY="-45.0" prefHeight="668.0" prefWidth="1095.0" styleClass="radius" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-148.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="-45.0">
+                        <VBox layoutX="-148.0" layoutY="-17.0" prefHeight="660.0" prefWidth="1095.0" styleClass="radius" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-148.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="-17.0">
                            <padding>
                               <Insets bottom="15.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
@@ -202,12 +202,12 @@
                                  </VBox.margin></Separator>
                               <Label fx:id="labelKeterangan" prefHeight="18.0" prefWidth="536.0" styleClass="white-text" textAlignment="CENTER">
                                  <padding>
-                                    <Insets bottom="10.0" left="8.0" top="15.0" />
+                                    <Insets bottom="10.0" left="7.0" top="15.0" />
                                  </padding>
                                  <font>
                                     <Font name="Book Antiqua" size="12.0" />
                                  </font></Label>
-                              <HTMLEditor fx:id="txtArea" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" prefHeight="569.0" prefWidth="1086.0" />
+                              <HTMLEditor fx:id="txtArea" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" prefHeight="556.0" prefWidth="1086.0" />
                            </children>
                         </VBox>
                      </children>
