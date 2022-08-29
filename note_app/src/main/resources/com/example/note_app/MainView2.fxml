@@ -74,7 +74,7 @@
                         <Font name="Book Antiqua" size="12.0" />
                      </font>
                   </JFXToggleButton>
-                  <Button fx:id="btnSave" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onActionSaveContent" prefHeight="38.0" prefWidth="38.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                  <Button fx:id="btnSave" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onActionSaveContent" prefHeight="38.0" prefWidth="38.0" styleClass="custom-button" textAlignment="CENTER" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -88,7 +88,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnDelete" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onActionDeleteContent" prefHeight="38.0" prefWidth="38.0" HBox.hgrow="ALWAYS">
+                  <Button fx:id="btnDelete" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onActionDeleteContent" prefHeight="38.0" prefWidth="38.0" styleClass="custom-button" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -102,7 +102,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnComment" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="1029.0" layoutY="15.0" mnemonicParsing="false" onAction="#showComments" prefHeight="38.0" prefWidth="38.0">
+                  <Button fx:id="btnComment" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="1029.0" layoutY="15.0" mnemonicParsing="false" onAction="#showComments" prefHeight="38.0" prefWidth="38.0" styleClass="custom-button">
                      <font>
                         <Font name="Book Antiqua" size="12.0" />
                      </font>
@@ -112,7 +112,7 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
-                  <Button fx:id="btnShare" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="1029.0" layoutY="15.0" mnemonicParsing="false" onAction="#showShare" prefHeight="38.0" prefWidth="38.0">
+                  <Button fx:id="btnShare" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="1029.0" layoutY="15.0" mnemonicParsing="false" onAction="#showShare" prefHeight="38.0" prefWidth="38.0" styleClass="custom-button">
                      <font>
                         <Font name="Book Antiqua" size="12.0" />
                      </font>
@@ -138,7 +138,7 @@
                            <children>
                               <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="200.0" spacing="5.0">
                                  <children>
-                                    <Button fx:id="btnAddCategory" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#newCategory" prefHeight="37.0" prefWidth="170.0" text="ADD NEW CATEGORY" textAlignment="CENTER">
+                                    <Button fx:id="btnAddCategory" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#newCategory" prefHeight="37.0" prefWidth="170.0" styleClass="custom-button" text="ADD NEW CATEGORY" textAlignment="CENTER">
                                        <font>
                                           <Font name="Book Antiqua" size="13.0" />
                                        </font>
@@ -149,7 +149,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor></Button>
                                     <ListView fx:id="listCategory" editable="true" onEditCommit="#editCommit" prefHeight="300.0" prefWidth="170.0" VBox.vgrow="ALWAYS" />
-                                    <Button fx:id="btnAddNote" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#newNote" prefHeight="38.0" prefWidth="179.0" text="ADD NEW NOTE" textAlignment="CENTER">
+                                    <Button fx:id="btnAddNote" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#newNote" prefHeight="38.0" prefWidth="179.0" styleClass="custom-button" text="ADD NEW NOTE" textAlignment="CENTER">
                                        <font>
                                           <Font name="Book Antiqua" size="13.0" />
                                        </font>

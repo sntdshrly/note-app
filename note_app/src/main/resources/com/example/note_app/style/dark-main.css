@@ -18,10 +18,10 @@
     -fx-font-weight: bold;
     -fx-font-size: 1.1em;
 }
-.button:hover .glyph-icon {
+.custom-button:hover .glyph-icon {
     -fx-fill: #010221;
 }
-.button {
+.custom-button {
     -fx-border-radius: 8;
     -fx-border-color: #fffafa;
     -fx-background-color: #010221;
@@ -29,7 +29,7 @@
     -fx-font-weight: bold;
     -fx-font-size: 1.1em;
 }
-.button .glyph-icon{
+.custom-button .glyph-icon{
     -fx-fill: #fffafa;
 }
 .list-view{

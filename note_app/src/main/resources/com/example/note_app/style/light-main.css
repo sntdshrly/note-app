@@ -10,7 +10,7 @@
     -fx-background-radius: 30;
 }
 
-.button:hover {
+.custom-button:hover {
     -fx-border-radius: 8;
     -fx-background-radius: 8;
     -fx-background-color: #010221;
@@ -18,7 +18,7 @@
     -fx-font-weight: bold;
     -fx-font-size: 1.1em;
 }
-.button {
+.custom-button {
     -fx-border-radius: 8;
     -fx-border-color: #010221;
     -fx-background-color: #fffafa;
@@ -26,7 +26,7 @@
     -fx-font-weight: bold;
     -fx-font-size: 1.1em;
 }
-.button:hover .glyph-icon {
+.custom-button:hover .glyph-icon {
     -fx-fill: #fffafa;
 }
 .list-view{
