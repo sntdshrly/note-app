@@ -10,7 +10,7 @@ import java.io.IOException;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("MainView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("MainView2.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
 //        scene.getStylesheets().add(getClass().getResource("style/light-main.css").toExternalForm());
         stage.setTitle("Note App Application");

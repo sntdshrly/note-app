@@ -40,6 +40,7 @@ import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
+import javafx.scene.web.HTMLEditor;
 
 public class MainController implements Initializable {
 
@@ -75,7 +76,7 @@ public class MainController implements Initializable {
     @FXML
     private Label labelKeterangan;
     @FXML
-    private TextArea txtArea;
+    private HTMLEditor txtArea;
     @FXML
     private Label labelUser;
     @FXML
@@ -132,7 +133,7 @@ public class MainController implements Initializable {
 
     private void reset() {
         txtTitle.clear();
-        txtArea.clear();
+//        txtArea.clear();
         btnSave.setDisable(false);
         btnUpdate.setDisable(true);
         btnDelete.setDisable(true);
@@ -149,7 +150,7 @@ public class MainController implements Initializable {
         if (selectedContent != null) {
             labelKeterangan.setText("Created in : " + selectedContent.getCreatedAt() + "\t\t\t Updated in : " + selectedContent.getUpdatedAt());
             txtTitle.setText(selectedContent.getContentTitle());
-            txtArea.setText(selectedContent.getContentField());
+//            txtArea.setText(selectedContent.getContentField());
         }
 
         listCategory.getSelectionModel().selectedItemProperty().addListener((observableValue, category, t1) -> {
@@ -164,7 +165,7 @@ public class MainController implements Initializable {
             if (selectedContent != null) {
                 labelKeterangan.setText("Created in : " + selectedContent.getCreatedAt() + "\t\t\t Updated in : " + selectedContent.getUpdatedAt());
                 txtTitle.setText(selectedContent.getContentTitle());
-                txtArea.setText(selectedContent.getContentField());
+//                txtArea.setText(selectedContent.getContentField());
             }
         });
     }
@@ -172,7 +173,7 @@ public class MainController implements Initializable {
     @FXML
     protected void onActionSaveContent(ActionEvent actionEvent) {
         selectedContent.setContentTitle(txtTitle.getText().trim());
-        selectedContent.setContentField(txtArea.getText());
+//        selectedContent.setContentField(txtArea.getText());
         if (contentDao.updateData(selectedContent) == 1) {
             labelStatus.setText("Note Saved!");
             labelStatus.setVisible(true);

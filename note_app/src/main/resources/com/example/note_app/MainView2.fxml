@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.HTMLEditor?>
+
+<AnchorPane fx:id="parent" prefHeight="739.0" prefWidth="1300.0" styleClass="background-light" stylesheets="@style/light-main.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.note_app.controller.MainController">
+   <children>
+      <VBox prefHeight="736.0" prefWidth="1300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <MenuBar prefHeight="26.0" prefWidth="1300.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                        <MenuItem mnemonicParsing="false" onAction="#logOut" text="Sign Out">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="DOWN" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#onActionAbout" text="About">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="A" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
+                  </items>
+                </Menu>
+              </menus>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </MenuBar>
+            <HBox prefHeight="32.0" prefWidth="1300.0">
+               <VBox.margin>
+                  <Insets bottom="-20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="81.0" prefWidth="1300.0" spacing="10.0">
+               <children>
+                  <Label fx:id="labelUser" prefHeight="26.0" prefWidth="686.0" styleClass="white-text" text="User" textFill="#010221" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="Book Antiqua" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="labelStatus" alignment="CENTER_RIGHT" contentDisplay="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="235.0" styleClass="white-text" textAlignment="RIGHT">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <JFXToggleButton fx:id="btnMode" onAction="#onActionMode" prefHeight="58.0" prefWidth="133.0" text="DAY">
+                     <HBox.margin>
+                        <Insets left="-0.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Book Antiqua" size="12.0" />
+                     </font>
+                  </JFXToggleButton>
+                  <Button fx:id="btnSave" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onActionSaveContent" prefHeight="38.0" prefWidth="38.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Book Antiqua" size="12.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="SAVE" size="22" text="" textAlignment="CENTER" />
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btnDelete" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onActionDeleteContent" prefHeight="38.0" prefWidth="38.0" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Book Antiqua" size="12.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="TRASH" size="22" textAlignment="CENTER" />
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btnComment" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="1029.0" layoutY="15.0" mnemonicParsing="false" onAction="#showComments" prefHeight="38.0" prefWidth="38.0">
+                     <font>
+                        <Font name="Book Antiqua" size="12.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="COMMENT" size="22" textAlignment="CENTER" translateX="1.0" translateY="-1.0" />
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Button fx:id="btnShare" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="1029.0" layoutY="15.0" mnemonicParsing="false" onAction="#showShare" prefHeight="38.0" prefWidth="38.0">
+                     <font>
+                        <Font name="Book Antiqua" size="12.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="SHARE_ALT" size="22" textAlignment="CENTER" />
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="5.0" top="-10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+               <children>
+                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="612.0" prefWidth="191.0">
+                     <children>
+                        <HBox prefHeight="623.0" prefWidth="201.0" AnchorPane.bottomAnchor="-11.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="145.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="200.0" spacing="5.0">
+                                 <children>
+                                    <Button fx:id="btnAddCategory" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#newCategory" prefHeight="37.0" prefWidth="170.0" text="ADD NEW CATEGORY" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Book Antiqua" size="13.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor></Button>
+                                    <ListView fx:id="listCategory" editable="true" onEditCommit="#editCommit" prefHeight="300.0" prefWidth="170.0" VBox.vgrow="ALWAYS" />
+                                    <Button fx:id="btnAddNote" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#newNote" prefHeight="38.0" prefWidth="179.0" text="ADD NEW NOTE" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Book Antiqua" size="13.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </VBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor></Button>
+                                    <ListView fx:id="listContent" onMouseClicked="#contentClicked" prefHeight="300.0" prefWidth="170.0" VBox.vgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
+                                 </padding>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+                <AnchorPane maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="564.0" prefWidth="954.0">
+                     <children>
+                        <VBox layoutX="-148.0" layoutY="-45.0" prefHeight="668.0" prefWidth="1095.0" styleClass="radius" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-148.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="-45.0">
+                           <padding>
+                              <Insets bottom="15.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                           <children>
+                              <TextField fx:id="txtTitle" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="48.0" prefWidth="718.0" styleClass="title">
+                                 <font>
+                                    <Font name="Book Antiqua" size="24.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="-5.0" left="5.0" />
+                                 </padding>
+                              </TextField>
+                              <Separator prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets bottom="-10.0" />
+                                 </VBox.margin></Separator>
+                              <Label fx:id="labelKeterangan" prefHeight="18.0" prefWidth="536.0" styleClass="white-text" textAlignment="CENTER">
+                                 <padding>
+                                    <Insets bottom="10.0" left="8.0" top="15.0" />
+                                 </padding>
+                                 <font>
+                                    <Font name="Book Antiqua" size="12.0" />
+                                 </font></Label>
+                              <HTMLEditor fx:id="txtArea" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" prefHeight="569.0" prefWidth="1086.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

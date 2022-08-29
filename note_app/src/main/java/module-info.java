@@ -11,6 +11,7 @@ module com.example.note_app {
     requires org.apache.commons.codec;
     requires java.desktop;
     requires AnimateFX;
+    requires javafx.web;
 
     opens com.example.note_app to javafx.fxml, com.google.gson;
     exports com.example.note_app;
