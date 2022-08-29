@@ -136,7 +136,7 @@
                         <PasswordField fx:id="newPassword" layoutX="9.0" layoutY="114.0" onMouseClicked="#onClickedNewPassword" prefHeight="34.0" prefWidth="275.0" promptText="Password"><font>
                            <Font name="Book Antiqua" size="12.0" />
                         </font></PasswordField>
-                        <Button fx:id="newBtnSignIn" layoutX="142.0" layoutY="171.0" mnemonicParsing="false" onAction="#registerNewUser" prefHeight="34.0" prefWidth="137.0" styleClass="primary-signIn" text="LOGIN">
+                        <Button fx:id="newBtnSignIn" layoutX="142.0" layoutY="171.0" mnemonicParsing="false" onAction="#registerNewUser" prefHeight="34.0" prefWidth="137.0" styleClass="primary-signIn" text="SIGN UP">
                            <font>
                               <Font name="Book Antiqua" size="12.0" />
                            </font>
