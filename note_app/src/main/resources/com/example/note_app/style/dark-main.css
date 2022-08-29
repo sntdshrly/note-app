@@ -11,20 +11,26 @@
     -fx-background-color: rgba(0,0,0,0);
 }
 .button:hover {
-    -fx-background-color: #083167;
+    -fx-border-radius: 8;
     -fx-background-radius: 8;
-    -fx-text-fill: #f5f6fa;
+    -fx-background-color: #fffafa;
+    -fx-text-fill: #010221;
+    -fx-font-weight: bold;
+    -fx-font-size: 1.1em;
 }
 .button:hover .glyph-icon {
-    -fx-fill: #f5f6fa;
+    -fx-fill: #010221;
 }
 .button {
-    -fx-background-color: #0b497e;
-    -fx-text-fill: white;
-    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: #fffafa;
+    -fx-background-color: #010221;
+    -fx-text-fill: #fffafa;
+    -fx-font-weight: bold;
+    -fx-font-size: 1.1em;
 }
 .button .glyph-icon{
-    -fx-fill: white;
+    -fx-fill: #fffafa;
 }
 .list-view{
     -fx-background-color: #0b497e;

@@ -152,7 +152,7 @@ public class LoginController {
     private void setLightMode() {
         parent.getStylesheets().remove(0);
         parent.getStylesheets().add(Main.class.getResource("style/light.css").toExternalForm());
-        btnMode.setText("OFF");
+        btnMode.setText("DAY");
         btnMode.setTextFill(Color.BLACK);
 //        Image image = new Image(String.valueOf(Main.class.getResource("img/dark.png")));
 //        imgMode.setImage(image);
@@ -161,7 +161,7 @@ public class LoginController {
     private void setDarkMode() {
         parent.getStylesheets().remove(0);
         parent.getStylesheets().add(Main.class.getResource("style/dark.css").toExternalForm());
-        btnMode.setText("ON");
+        btnMode.setText("NIGHT");
         btnMode.setTextFill(Color.WHITE);
     }
 

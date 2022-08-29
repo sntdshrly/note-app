@@ -146,7 +146,7 @@ public class MainController implements Initializable {
         listContent.getSelectionModel().selectFirst();
         selectedContent = listContent.getSelectionModel().getSelectedItem();
         if (selectedContent != null) {
-            labelKeterangan.setText("Created in : " + selectedContent.getCreatedAt() + "\t Updated in : " + selectedContent.getUpdatedAt());
+            labelKeterangan.setText("Created in : " + selectedContent.getCreatedAt() + "\t\t\t Updated in : " + selectedContent.getUpdatedAt());
             txtTitle.setText(selectedContent.getContentTitle());
             txtArea.setText(selectedContent.getContentField());
         }
@@ -161,7 +161,7 @@ public class MainController implements Initializable {
         listContent.getSelectionModel().selectedItemProperty().addListener((observableValue, content, t1) -> {
             selectedContent = listContent.getSelectionModel().getSelectedItem();
             if (selectedContent != null) {
-                labelKeterangan.setText("Created in : " + selectedContent.getCreatedAt() + "\t Updated in : " + selectedContent.getUpdatedAt());
+                labelKeterangan.setText("Created in : " + selectedContent.getCreatedAt() + "\t\t\t Updated in : " + selectedContent.getUpdatedAt());
                 txtTitle.setText(selectedContent.getContentTitle());
                 txtArea.setText(selectedContent.getContentField());
             }
@@ -423,14 +423,14 @@ public class MainController implements Initializable {
     private void setLightMode() {
         parent.getStylesheets().remove(0);
         parent.getStylesheets().add(Main.class.getResource("style/light-main.css").toExternalForm());
-        btnMode.setText("OFF");
+        btnMode.setText("DAY");
         btnMode.setTextFill(Color.BLACK);
     }
 
     private void setDarkMode() {
         parent.getStylesheets().remove(0);
         parent.getStylesheets().add(Main.class.getResource("style/dark-main.css").toExternalForm());
-        btnMode.setText("ON");
+        btnMode.setText("NIGHT");
         btnMode.setTextFill(Color.WHITE);
     }
 
