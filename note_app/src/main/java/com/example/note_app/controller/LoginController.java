@@ -113,6 +113,9 @@ public class LoginController {
                 username.getScene().getWindow().hide();
             } catch (NoResultException e) {
                 new animatefx.animation.Shake(username).play();
+                new animatefx.animation.Shake(password).play();
+                username.setStyle("-fx-text-box-border: red;");
+                password.setStyle("-fx-text-box-border: red;");
                 showAlert("Username or Password is incorrect!", Alert.AlertType.ERROR);
             } catch (IOException e) {
                 throw new RuntimeException(e);
