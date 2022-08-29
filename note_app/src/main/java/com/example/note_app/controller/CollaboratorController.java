@@ -10,11 +10,10 @@ import com.example.note_app.entity.relationship.UserCategory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.ListView;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 
 import javax.persistence.NoResultException;
 import java.net.URL;
@@ -28,6 +27,8 @@ public class CollaboratorController implements Initializable {
     private MainController mainController;
 
     private ObservableList<User> users;
+    @FXML
+    private Label lblUsername;
 
     private UserDaoImpl userDao;
     private ContentDaoImpl contentDao;
@@ -65,10 +66,19 @@ public class CollaboratorController implements Initializable {
                 categoryDao.addData(new UserCategory(finalUser.getUserId(), category.getCategoryId()));
             });
         } catch (NoResultException e) {
-            System.out.println("No user");
+            new animatefx.animation.Shake(addUserField).play();
+//            String image = "../img/icon-checklist.png";
+//            addUserField.setStyle("-fx-text-box-border: red;" + "-fx-background-image: url('" + image + "'); ");
+            addUserField.setStyle("-fx-text-box-border: red;");
+            lblUsername.setText("Couldn't find username or email address!");
         }
         setUsers(mainController.getSelectedContent());
 //        contentDao.updateData() mainController.getSelectedContent().getUsers().add()
+    }
+    private void showAlert(String msg, Alert.AlertType type) {
+        Alert alert = new Alert(type);
+        alert.setContentText(msg);
+        alert.show();
     }
 
     public void confirm(ActionEvent actionEvent) {
@@ -82,5 +92,10 @@ public class CollaboratorController implements Initializable {
     public void setUsers(Content content) {
         users = userDao.fetchAll().filtered(user -> user.getContents().contains(content));
         listUser.setItems(users);
+    }
+
+    public void onClicked(MouseEvent mouseEvent) {
+        addUserField.setStyle("-fx-text-box-border: #d9d9d9;");
+        lblUsername.setText("");
     }
 }

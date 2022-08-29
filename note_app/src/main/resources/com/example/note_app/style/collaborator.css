@@ -1,34 +1,41 @@
 .text-field {
     -fx-background-image: url("../img/icon-search-16.png");
     -fx-background-repeat: no-repeat;
-    -fx-background-position: right center;
+    -fx-background-position: right 10 center;
 }
 .list-view{
-    -fx-background-color: white;
-    -fx-border-color: #545454;
-    -fx-text-fill: black;
+    -fx-background-color: #fffafa;
+    -fx-border-color: #010221;
+    -fx-text-fill: #010221;
     -fx-background-radius: 8;
     -fx-border-radius: 8;
 }
 .list-cell{
-    -fx-background-color: white;
-    -fx-text-fill: black;
+    -fx-background-color: #fffafa;
+    -fx-text-fill: #010221;
     -fx-background-radius: 8;
     -fx-border-radius: 8;
 }
 .list-cell:selected {
-    -fx-background-color: #dcdde1;
+    -fx-background-color: #DFDEEF;
 }
 
 .button:hover {
-    -fx-background-color: #545454;
+    -fx-border-radius: 8;
     -fx-background-radius: 8;
-    -fx-text-fill: #f5f6fa;
+    -fx-background-color: #010221;
+    -fx-text-fill: #fffafa;
+    -fx-font-weight: bold;
+    -fx-font-size: 1.1em;
 }
 .button {
-    -fx-background-color: #dcdde1;
-    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: #010221;
+    -fx-background-color: #fffafa;
+    -fx-text-fill: #010221;
+    -fx-font-weight: bold;
+    -fx-font-size: 1.1em;
 }
 .button:hover .glyph-icon {
-    -fx-fill: #f5f6fa;
+    -fx-fill: #fffafa;
 }
