@@ -8,6 +8,7 @@ import com.google.gson.GsonBuilder;
 import com.jfoenix.controls.JFXToggleButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -18,6 +19,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.persistence.NoResultException;
@@ -60,7 +62,7 @@ public class LoginController {
          */
         btnMode.setCursor(Cursor.HAND);
         btnSignIn.setCursor(Cursor.HAND);
-        btnSignUp.setCursor(Cursor.HAND);
+//        btnSignUp.setCursor(Cursor.HAND);
         pass_toggle.setCursor(Cursor.HAND);
 
         gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
@@ -115,13 +117,20 @@ public class LoginController {
         }
     }
 
-    public void signUp(ActionEvent actionEvent) {
+    public void signUp(ActionEvent actionEvent) throws IOException {
 //        User user = new User();
 //        user.setUsername(username.getText());
 //        user.setPassword(password.getText());
 //        userDao.addData(user);
 //        showAlert("Login Successfully", Alert.AlertType.INFORMATION);
 //        username.getScene().getWindow().hide();
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("SignUpView.fxml"));
+
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        stage.setTitle("Sign Up");
+        stage.setScene(scene);
+        stage.show();
     }
 
     private boolean checkForm() {
