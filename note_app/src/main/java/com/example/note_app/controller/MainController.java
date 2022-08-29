@@ -29,6 +29,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.web.WebEngine;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.util.StringConverter;
@@ -150,7 +151,7 @@ public class MainController implements Initializable {
         if (selectedContent != null) {
             labelKeterangan.setText("Created in : " + selectedContent.getCreatedAt() + "\t\t\t Updated in : " + selectedContent.getUpdatedAt());
             txtTitle.setText(selectedContent.getContentTitle());
-//            txtArea.setText(selectedContent.getContentField());
+            txtArea.setHtmlText(selectedContent.getContentField());
         }
 
         listCategory.getSelectionModel().selectedItemProperty().addListener((observableValue, category, t1) -> {
@@ -165,7 +166,7 @@ public class MainController implements Initializable {
             if (selectedContent != null) {
                 labelKeterangan.setText("Created in : " + selectedContent.getCreatedAt() + "\t\t\t Updated in : " + selectedContent.getUpdatedAt());
                 txtTitle.setText(selectedContent.getContentTitle());
-//                txtArea.setText(selectedContent.getContentField());
+                txtArea.setHtmlText(selectedContent.getContentField());
             }
         });
     }
@@ -173,7 +174,7 @@ public class MainController implements Initializable {
     @FXML
     protected void onActionSaveContent(ActionEvent actionEvent) {
         selectedContent.setContentTitle(txtTitle.getText().trim());
-//        selectedContent.setContentField(txtArea.getText());
+        selectedContent.setContentField(txtArea.getHtmlText());
         if (contentDao.updateData(selectedContent) == 1) {
             labelStatus.setText("Note Saved!");
             labelStatus.setVisible(true);
