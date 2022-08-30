@@ -376,7 +376,6 @@ public class MainController implements Initializable {
      */
     private void showLogin() {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("LoginView.fxml"));
-
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load());
@@ -384,6 +383,7 @@ public class MainController implements Initializable {
             throw new RuntimeException(e);
         }
         Stage stage = new Stage();
+        stage.setResizable(false);
         stage.setTitle("Login");
         stage.setScene(scene);
 
@@ -510,6 +510,7 @@ public class MainController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("AboutUsView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
+        stage.setResizable(false);
         stage.setTitle("About Us");
         stage.setScene(scene);
         stage.show();

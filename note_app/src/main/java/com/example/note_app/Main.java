@@ -13,6 +13,7 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("MainView2.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
 //        scene.getStylesheets().add(getClass().getResource("style/light-main.css").toExternalForm());
+        stage.setResizable(false);
         stage.setTitle("Note App Application");
         stage.setScene(scene);
         stage.show();
