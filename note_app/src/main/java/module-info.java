@@ -14,6 +14,7 @@ module com.example.note_app {
     requires javafx.web;
     requires org.json;
     requires prettytime;
+    requires commons.validator;
 
     opens com.example.note_app to javafx.fxml, com.google.gson;
     exports com.example.note_app;

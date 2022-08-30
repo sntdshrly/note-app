@@ -22,6 +22,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.validator.routines.EmailValidator;
 
 import javax.persistence.NoResultException;
 import java.io.File;
@@ -121,7 +122,7 @@ public class LoginController {
                 throw new RuntimeException(e);
             }
         } else {
-            if (username.getText().trim()=="" && password.getText().trim()=="") {
+            if (username.getText().trim() == "" && password.getText().trim() == "") {
                 new animatefx.animation.Shake(username).play();
                 new animatefx.animation.Shake(password).play();
                 username.setStyle("-fx-text-box-border: red;");
@@ -129,14 +130,12 @@ public class LoginController {
                 lblUsername.setText("Please fill username field!");
                 lblPassword.setText("Please fill password field!");
                 showAlert("Please fill username and password field!", Alert.AlertType.ERROR);
-            }
-            else if(username.getText().trim()==""){
+            } else if (username.getText().trim() == "") {
                 new animatefx.animation.Shake(username).play();
                 username.setStyle("-fx-text-box-border: red;");
                 lblUsername.setText("Please fill username field!");
                 showAlert("Please fill username field!", Alert.AlertType.ERROR);
-            }
-            else if(password.getText().trim()==""){
+            } else if (password.getText().trim() == "") {
                 new animatefx.animation.Shake(password).play();
                 password.setStyle("-fx-text-box-border: red;");
                 lblPassword.setText("Please fill password field!");
@@ -144,55 +143,65 @@ public class LoginController {
             }
         }
     }
+
     public void registerNewUser(ActionEvent actionEvent) throws NoResultException {
         User user = new User();
         user.setUsername(newUsername.getText());
         /*
-        * Hashing password
-        * */
+         * Hashing password
+         * */
         String enc_password = DigestUtils.sha1Hex((newPassword.getText().trim()));
         user.setPassword(enc_password);
         user.setEmail(newEmail.getText());
 //        userDao.addData(user);
 //        username.getScene().getWindow().hide();
-        if (!newUsername.getText().isBlank() && !newPassword.getText().isBlank() && !newEmail.getText().isBlank()) {
-            try {
-                userDao.addData(user);
-                username.getScene().getWindow().hide();
-                user = userDao.fetchUser(newUsername.getText(), enc_password);
-                Files.write(pathDefaultUser, gson.toJson(user).getBytes());
-                mainController.setLoggedUser(user);
-                newUsername.getScene().getWindow().hide();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+
+        boolean valid = EmailValidator.getInstance().isValid(newEmail.getText());
+        if (valid) {
+            if (!newUsername.getText().isBlank() && !newPassword.getText().isBlank() && !newEmail.getText().isBlank()) {
+                try {
+                    userDao.addData(user);
+                    username.getScene().getWindow().hide();
+                    user = userDao.fetchUser(newUsername.getText(), enc_password);
+                    Files.write(pathDefaultUser, gson.toJson(user).getBytes());
+                    mainController.setLoggedUser(user);
+                    newUsername.getScene().getWindow().hide();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
-        }
-        else if (newUsername.getText().isBlank() || newPassword.getText().isBlank() || newEmail.getText().isBlank()) {
-            if(newUsername.getText().isBlank()){
+        } else if (newUsername.getText().isBlank() || newPassword.getText().isBlank() || newEmail.getText().isBlank()) {
+            if (newUsername.getText().isBlank()) {
                 new animatefx.animation.Shake(newUsername).play();
                 newLblUsername.setText("Please fill username field!");
                 newUsername.setStyle("-fx-text-box-border: red;");
             }
-            if(newPassword.getText().isBlank()){
+            if (newPassword.getText().isBlank()) {
                 new animatefx.animation.Shake(newPassword).play();
                 newLblPassword.setText("Please fill password field!");
                 newPassword.setStyle("-fx-text-box-border: red;");
             }
-            if(newEmail.getText().isBlank()){
+            if (newEmail.getText().isBlank()) {
                 new animatefx.animation.Shake(newEmail).play();
                 newLblEmail.setText("Please fill email field!");
                 newEmail.setStyle("-fx-text-box-border: red;");
             }
             showAlert("Please fill all the field!", Alert.AlertType.ERROR);
         }
+        else if(!valid){
+            new animatefx.animation.Shake(newEmail).play();
+            newLblEmail.setText("Please use an valid email address!");
+            newEmail.setStyle("-fx-text-box-border: red;");
+            showAlert("Please use an valid email address!", Alert.AlertType.ERROR);
+        }
     }
 
     public void signUp(ActionEvent actionEvent) throws IOException {
-        if(actionEvent.getSource() == btnSignUp){
+        if (actionEvent.getSource() == btnSignUp) {
             signUpView.setVisible(true);
             loginView.setVisible(false);
         }
-        if(actionEvent.getSource() == btnSignIn2) {
+        if (actionEvent.getSource() == btnSignIn2) {
             signUpView.setVisible(false);
             loginView.setVisible(true);
         }
@@ -280,6 +289,7 @@ public class LoginController {
         password.setVisible(true);
         pass_text.setVisible(false);
     }
+
     @FXML
     public void onActionToggle2Visible(ActionEvent event) {
         /*
@@ -301,6 +311,7 @@ public class LoginController {
         username.setStyle("-fx-text-box-border: #d9d9d9;");
         lblUsername.setText("");
     }
+
     @FXML
     public void onClickedPassword(MouseEvent mouseEvent) {
         password.setStyle("-fx-text-box-border: #d9d9d9;");
