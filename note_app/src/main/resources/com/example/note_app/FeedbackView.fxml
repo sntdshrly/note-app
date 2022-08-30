@@ -39,7 +39,7 @@
                         <Image url="@img/icon-checklist.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="btnInfo" mnemonicParsing="false" opacity="1" prefHeight="30.0" prefWidth="132.0" text="MARK AS READ">
+                  <Button fx:id="btnInfo" mnemonicParsing="false" opacity="1" prefHeight="30.0" prefWidth="132.0" styleClass="custom-button" text="MARK AS READ">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

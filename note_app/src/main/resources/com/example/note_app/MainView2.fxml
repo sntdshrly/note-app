@@ -30,7 +30,7 @@
                   <items>
                         <MenuItem mnemonicParsing="false" onAction="#logOut" text="Sign Out">
                            <accelerator>
-                              <KeyCodeCombination alt="UP" code="DOWN" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                              <KeyCodeCombination alt="UP" code="Q" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                            </accelerator></MenuItem>
                   </items>
                 </Menu>
