@@ -158,14 +158,27 @@ public class MainController implements Initializable {
             contents = FXCollections.observableArrayList(loggedUser.getContents());
             contents = contents.filtered(content -> content.getCategories().contains(selectedCategory));
             listContent.setItems(contents);
+            listContent.getSelectionModel().selectFirst();
         });
 
         listContent.getSelectionModel().selectedItemProperty().addListener((observableValue, content, t1) -> {
             selectedContent = listContent.getSelectionModel().getSelectedItem();
             if (selectedContent != null) {
+                txtTitle.setDisable(false);
+                txtArea.setDisable(false);
                 labelKeterangan.setText("Created in : " + selectedContent.getCreatedAt() + "\t\t\t Updated in : " + selectedContent.getUpdatedAt());
                 txtTitle.setText(selectedContent.getContentTitle());
-                txtArea.setHtmlText(selectedContent.getContentField());
+                if (selectedContent.getContentField() == null) {
+                    txtArea.setHtmlText("");
+                } else {
+                    txtArea.setHtmlText(selectedContent.getContentField());
+                }
+            } else {
+                txtTitle.setText("");
+                txtArea.setHtmlText("");
+                labelKeterangan.setText("");
+                txtTitle.setDisable(true);
+                txtArea.setDisable(true);
             }
         });
     }
@@ -174,10 +187,16 @@ public class MainController implements Initializable {
     protected void onActionSaveContent(ActionEvent actionEvent) {
         selectedContent.setContentTitle(txtTitle.getText().trim());
         selectedContent.setContentField(txtArea.getHtmlText());
+        int selectedIndex = listContent.getSelectionModel().getSelectedItem().getContentId();
         if (contentDao.updateData(selectedContent) == 1) {
             labelStatus.setText("Note Saved!");
             labelStatus.setVisible(true);
             refreshContent();
+            contents.forEach(content -> {
+                if (content.getContentId() == selectedIndex) {
+                    listContent.getSelectionModel().select(content);
+                }
+            });
         }
         PauseTransition visiblePause = new PauseTransition(
                 Duration.seconds(1)
