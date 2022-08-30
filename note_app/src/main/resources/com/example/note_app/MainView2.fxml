@@ -200,7 +200,7 @@
                                  <VBox.margin>
                                     <Insets bottom="-10.0" />
                                  </VBox.margin></Separator>
-                              <Label fx:id="labelKeterangan" prefHeight="18.0" prefWidth="536.0" styleClass="white-text" textAlignment="CENTER">
+                              <Label fx:id="labelKeterangan" prefHeight="43.0" prefWidth="1082.0" styleClass="white-text" textAlignment="CENTER">
                                  <padding>
                                     <Insets bottom="10.0" left="7.0" top="15.0" />
                                  </padding>

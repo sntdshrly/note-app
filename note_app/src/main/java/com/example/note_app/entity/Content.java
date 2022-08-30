@@ -3,10 +3,10 @@ package com.example.note_app.entity;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.time.LocalDateTime;
+import java.util.*;
+
+import org.ocpsoft.prettytime.PrettyTime;
 
 @Entity
 public class Content {
@@ -89,8 +89,9 @@ public class Content {
     }
 
     public String getCreatedAt() {
-        String createFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(createdAt);
-        return createFormat;
+//        String createFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(createdAt);
+        PrettyTime createFormat = new PrettyTime();
+        return String.valueOf(createFormat.format(createdAt));
     }
 
     public void setCreatedAt(Timestamp createdAt) {
@@ -98,12 +99,28 @@ public class Content {
     }
 
     public String getUpdatedAt() {
-        String updateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(updatedAt);
-        return updateFormat;
+        PrettyTime updateFormat = new PrettyTime();
+        return String.valueOf(updateFormat.format(updatedAt));
     }
 
     public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getCreateTime() {
+        String createTime = new SimpleDateFormat("dd LLLL yyyy HH:mm:ss").format(createdAt);
+        return createTime;
+    }
+    public void setCreateTime(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getUpdateTime() {
+        String createTime = new SimpleDateFormat("dd LLLL yyyy HH:mm:ss").format(updatedAt);
+        return createTime;
+    }
+    public void setUpdateTime(Timestamp createdAt) {
+        this.createdAt = updatedAt;
     }
 
     @Override

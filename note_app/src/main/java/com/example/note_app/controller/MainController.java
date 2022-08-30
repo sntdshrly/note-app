@@ -167,7 +167,7 @@ public class MainController implements Initializable {
         listContent.getSelectionModel().selectFirst();
         selectedContent = listContent.getSelectionModel().getSelectedItem();
         if (selectedContent != null) {
-            labelKeterangan.setText("Created in : " + selectedContent.getCreatedAt() + "\t\t\t Updated in : " + selectedContent.getUpdatedAt());
+            labelKeterangan.setText("Created " + selectedContent.getCreatedAt() +" (" + selectedContent.getCreateTime() +")" + "\t\t\t Modified " + selectedContent.getUpdatedAt() +" (" + selectedContent.getUpdateTime() +")");
             txtTitle.setText(selectedContent.getContentTitle());
             txtArea.setHtmlText(selectedContent.getContentField());
         }
@@ -193,7 +193,7 @@ public class MainController implements Initializable {
                 btnDelete.setDisable(false);
                 btnComment.setDisable(false);
                 btnShare.setDisable(false);
-                labelKeterangan.setText("Created in : " + selectedContent.getCreatedAt() + "\t\t\t Updated in : " + selectedContent.getUpdatedAt());
+                labelKeterangan.setText("Created " + selectedContent.getCreatedAt() +" (" + selectedContent.getCreateTime() +")" + "\t\t\t Modified " + selectedContent.getUpdatedAt() +" (" + selectedContent.getUpdateTime() +")");
                 txtTitle.setText(selectedContent.getContentTitle());
                 if (selectedContent.getContentField() == null) {
                     txtArea.setHtmlText("");

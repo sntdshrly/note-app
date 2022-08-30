@@ -45,6 +45,8 @@ public class ContentDaoImpl implements DaoService<Content> {
 
         object.setCreatedAt(Timestamp.valueOf(LocalDateTime.now()));
         object.setUpdatedAt(Timestamp.valueOf(LocalDateTime.now()));
+        object.setCreateTime(Timestamp.valueOf(LocalDateTime.now()));
+        object.setUpdateTime(Timestamp.valueOf(LocalDateTime.now()));
 
         try {
             session.save(object);
