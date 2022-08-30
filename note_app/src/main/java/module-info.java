@@ -12,6 +12,7 @@ module com.example.note_app {
     requires java.desktop;
     requires AnimateFX;
     requires javafx.web;
+    requires org.json;
 
     opens com.example.note_app to javafx.fxml, com.google.gson;
     exports com.example.note_app;

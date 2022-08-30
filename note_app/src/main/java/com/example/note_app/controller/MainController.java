@@ -8,6 +8,8 @@ import com.example.note_app.entity.Category;
 import com.example.note_app.entity.Content;
 import com.example.note_app.entity.User;
 import com.example.note_app.entity.relationship.UserCategory;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.jfoenix.controls.JFXToggleButton;
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
@@ -36,12 +38,14 @@ import javafx.util.StringConverter;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashSet;
-import java.util.ResourceBundle;
-import java.util.Set;
+import java.util.*;
+
 import javafx.scene.web.HTMLEditor;
+import org.json.*;
 
 public class MainController implements Initializable {
 
@@ -91,6 +95,7 @@ public class MainController implements Initializable {
      */
     private User loggedUser;
     private UserDaoImpl userDao;
+    private final Path pathSetting = Paths.get("data/setting.json");
 
     /**
      * Content Variables
@@ -129,6 +134,20 @@ public class MainController implements Initializable {
         contents = FXCollections.observableArrayList();
         refreshContent();
         initContent();
+
+        // Setting mode
+        try {
+            JSONObject setting = new JSONObject(Files.readString(pathSetting));
+            if (setting.getString("mode").equals("dark")) {
+                isLightMode = true;
+                btnMode.setSelected(true);
+            } else {
+                isLightMode = false;
+            }
+            onActionMode(null);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void reset() {
@@ -159,6 +178,10 @@ public class MainController implements Initializable {
             contents = contents.filtered(content -> content.getCategories().contains(selectedCategory));
             listContent.setItems(contents);
             listContent.getSelectionModel().selectFirst();
+            btnAddNote.setDisable(false);
+            if (selectedCategory == null) {
+                btnAddNote.setDisable(true);
+            }
         });
 
         listContent.getSelectionModel().selectedItemProperty().addListener((observableValue, content, t1) -> {
@@ -166,6 +189,10 @@ public class MainController implements Initializable {
             if (selectedContent != null) {
                 txtTitle.setDisable(false);
                 txtArea.setDisable(false);
+                btnSave.setDisable(false);
+                btnDelete.setDisable(false);
+                btnComment.setDisable(false);
+                btnShare.setDisable(false);
                 labelKeterangan.setText("Created in : " + selectedContent.getCreatedAt() + "\t\t\t Updated in : " + selectedContent.getUpdatedAt());
                 txtTitle.setText(selectedContent.getContentTitle());
                 if (selectedContent.getContentField() == null) {
@@ -179,6 +206,11 @@ public class MainController implements Initializable {
                 labelKeterangan.setText("");
                 txtTitle.setDisable(true);
                 txtArea.setDisable(true);
+
+                btnSave.setDisable(true);
+                btnDelete.setDisable(true);
+                btnComment.setDisable(true);
+                btnShare.setDisable(true);
             }
         });
     }
@@ -430,7 +462,7 @@ public class MainController implements Initializable {
      * Light/Dark mode
      */
 
-    private boolean isLightMode = true;
+    private boolean isLightMode;
 
     public void onActionMode(ActionEvent actionEvent) {
         isLightMode = !isLightMode;
@@ -446,6 +478,14 @@ public class MainController implements Initializable {
         parent.getStylesheets().add(Main.class.getResource("style/light-main.css").toExternalForm());
         btnMode.setText("DAY");
         btnMode.setTextFill(Color.BLACK);
+        String mode = "{\n" +
+                "  \"mode\" : \"light\"\n" +
+                "}";
+        try {
+            Files.write(pathSetting, mode.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void setDarkMode() {
@@ -453,6 +493,14 @@ public class MainController implements Initializable {
         parent.getStylesheets().add(Main.class.getResource("style/dark-main.css").toExternalForm());
         btnMode.setText("NIGHT");
         btnMode.setTextFill(Color.WHITE);
+        String mode = "{\n" +
+                "  \"mode\" : \"dark\"\n" +
+                "}";
+        try {
+            Files.write(pathSetting, mode.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
