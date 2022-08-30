@@ -14,10 +14,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.persistence.criteria.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class ContentDaoImpl implements DaoService<Content> {
@@ -44,6 +42,9 @@ public class ContentDaoImpl implements DaoService<Content> {
         int result;
         Session session = HibernateUtility.getSession();
         Transaction transaction = session.beginTransaction();
+
+        object.setCreatedAt(Timestamp.valueOf(LocalDateTime.now()));
+        object.setUpdatedAt(Timestamp.valueOf(LocalDateTime.now()));
 
         try {
             session.save(object);
@@ -102,6 +103,8 @@ public class ContentDaoImpl implements DaoService<Content> {
         int result;
         Session session = HibernateUtility.getSession();
         Transaction transaction = session.beginTransaction();
+
+        object.setUpdatedAt(Timestamp.valueOf(LocalDateTime.now()));
 
         try {
             session.update(object);
