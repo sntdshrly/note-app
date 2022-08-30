@@ -1,9 +1,8 @@
 package com.example.note_app.entity;
 
-import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -89,16 +88,18 @@ public class Content {
         this.contentField = contentField;
     }
 
-    public Timestamp getCreatedAt() {
-        return createdAt;
+    public String getCreatedAt() {
+        String createFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(createdAt);
+        return createFormat;
     }
 
     public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Timestamp getUpdatedAt() {
-        return updatedAt;
+    public String getUpdatedAt() {
+        String updateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(updatedAt);
+        return updateFormat;
     }
 
     public void setUpdatedAt(Timestamp updatedAt) {
