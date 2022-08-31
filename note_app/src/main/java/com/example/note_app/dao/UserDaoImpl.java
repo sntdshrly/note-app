@@ -102,8 +102,10 @@ public class UserDaoImpl implements DaoService<User> {
         Root<User> root = query.from(User.class);
 
         Predicate usernameCheck = builder.equal(root.get("username"), username);
+        Predicate emailCheck = builder.equal(root.get("email"), username);
         Predicate passwordCheck = builder.equal(root.get("password"), password);
-        Predicate predicate = builder.and(usernameCheck, passwordCheck);
+        Predicate predicates = builder.or(usernameCheck, emailCheck);
+        Predicate predicate = builder.and(predicates, passwordCheck);
         query.where(predicate);
 
         User loginUser = session.createQuery(query).getSingleResult();
