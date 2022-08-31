@@ -7,5 +7,7 @@
   * Create user
   * Content built using HTML Editor (bold, underline, highlight, etc)
   * Email Validator
-  * Animation for UI
+  * Animation, font awesome, prettytime (example: 2 years ago) for UI
   * DAO & Hibernate implementation
+  * GSON implementation for user & mode (light/night) -> save last settings and user
+  * Hashing password using SHA-1
