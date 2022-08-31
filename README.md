@@ -6,3 +6,6 @@
   * Shareable project
   * Create user
   * Content built using HTML Editor (bold, underline, highlight, etc)
+  * Validator email
+  * Animation for UI
+  * DAO & Hibernate implementation
