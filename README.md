@@ -19,7 +19,7 @@
   * Animation, font awesome, prettytime (example: 2 years ago) for UI
   * DAO & Hibernate implementation
   * GSON implementation for user & mode (light/night) -> save last settings and user
-  * Hashing password using SHA-1!
+  * Hashing password using SHA-1
 
 ## Demo
 https://youtu.be/qsNlNinJaSY
